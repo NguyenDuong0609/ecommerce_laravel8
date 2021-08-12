@@ -1,0 +1,113 @@
+<template>
+  <div class="modal fade" id="modal-default">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Update User</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form @submit.prevent="register">
+            <div class="card-body">
+              <div class="form-group">
+                <label for="exampleInputEmail1">Name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  v-model="name"
+                  name="name"
+                  placeholder="Enter name"
+                />
+              </div>
+              <div class="form-group">
+                <label for="exampleInputEmail1">Email address</label>
+                <input
+                  type="email"
+                  class="form-control"
+                  name="email"
+                  v-model="email"
+                  placeholder="Enter email"
+                />
+              </div>
+              <div class="form-group">
+                <label for="exampleInputPassword1">Password</label>
+                <input
+                  type="password"
+                  class="form-control"
+                  name="password"
+                  id="password"
+                  v-model="password"
+                  placeholder="Password"
+                />
+              </div>
+              <div class="form-group">
+                <label for="exampleInputPassword1">Password Confirm</label>
+                <input
+                  type="password"
+                  class="form-control"
+                  name="password_confirm"
+                  id="password_confirm"
+                  v-model="password_confirmation"
+                  placeholder="Password confirm"
+                />
+              </div>
+            </div>
+            <!-- /.card-body -->
+
+            <div class="card-footer">
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+          </form>
+        </div>
+        <!-- <div class="modal-footer justify-content-between">
+          <button type="button" class="btn btn-default" data-dismiss="modal">
+            Close
+          </button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div> -->
+      </div>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
+</template>
+
+<script>
+import axios from "axios";
+export default {
+  mounted() {
+  },
+  data() {
+    return {
+      name: "",
+      email: "",
+      password: "",
+      password_confirmation: "",
+    };
+  },
+  methods: {
+    register: function (e) {
+      e.preventDefault();
+      axios
+        .post("https://ecommerce.test/api/user/signup", {
+          email: this.email,
+          password: this.password,
+          password_confirmation: this.password_confirmation,
+          name: this.name,
+        })
+        .then((res) => {
+          if (!res.data.errors) {
+            $('#modal-default').css('display','none');
+            $( "div" ).removeClass( "modal-backdrop fade show" );
+            toastr.success('User add successfully')
+          } else {
+             toastr.error('Please fill in form')
+          }
+        })
+        .catch((error) => console.log(error));
+    },
+  },
+};
+</script>

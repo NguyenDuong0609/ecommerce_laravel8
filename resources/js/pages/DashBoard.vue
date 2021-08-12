@@ -606,8 +606,23 @@
 
 <script>
     export default {
-        mounted() {
-            console.log('Component mounted.')
-        }
+        // mounted() {
+        //     this.token = this.$cookies.get('token')
+        //      axios.get('https://ecommerce.test/api/user/me', {
+        //         headers: {
+        //             'Authorization': `Bearer  ${this.token}`
+        //         }
+        //      })
+        //         .then((res) => {
+        //             this.infoUser = res.data;
+        //         })
+        //         .catch((error) => console.log(error));
+        // },
+        // data() {
+        //     return {
+        //         token: '',
+        //         infoUser: ''
+        //     }
+        // }
     }
 </script>

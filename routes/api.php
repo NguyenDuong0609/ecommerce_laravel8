@@ -28,5 +28,11 @@ Route::prefix('/user')->group( function() {
     ], function() {
         Route::delete('logout', [App\Http\Controllers\api\v1\AuthController::class, 'logout']);
         Route::get('me', [App\Http\Controllers\api\v1\AuthController::class, 'user']);
+
+        Route::get('/', [App\Http\Controllers\api\v1\UserController::class, 'users']);
+        Route::get('/{id}', [App\Http\Controllers\api\v1\UserController::class, 'user']);
+
+        Route::put('/{id}', [App\Http\Controllers\api\v1\UserController::class, 'update']);
+        Route::delete('/{id}', [App\Http\Controllers\api\v1\UserController::class, 'destroy']);
     });
 });

@@ -14,13 +14,20 @@ Vue.use(VueRouter)
 
 // Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('admin-component', require('./components/AdminComponent.vue').default);
+Vue.component('login', require('./pages/Login').default);
 
 import DashBoard from './pages/DashBoard';
+import User from './pages/User';
 
 const routes = [
     {
-        path: '/admin/',
+        path: '/admin',
         component: DashBoard
+    },
+    {
+        path: '/admin/user',
+        component: User,
+        name: 'user',
     }
 ];
 

@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Carbon\Carbon;
 use Validator;
+use Symfony\Component\HttpFoundation\Cookie;
 
 class AuthController extends Controller
 {
@@ -72,7 +73,7 @@ class AuthController extends Controller
         $credentials = request(['email', 'password']);
 
         if(!Auth::attempt($credentials)) {
-            return response(['message' => 'Invalid login credentials.']);
+            return response(['errors' => 'Invalid login credentials.']);
         }
 
         $user = $request->user();
@@ -83,6 +84,8 @@ class AuthController extends Controller
             $token->expires_at = Carbon::now()->addWeeks(1);
         }
 
+        $minutes = Carbon::parse($tokenResult->token->expires_at)->toDateTimeString();
+
         return response()->json([
             'status' => 'success',
             'user'   => Auth::user(),
@@ -91,7 +94,7 @@ class AuthController extends Controller
             'expires_at' => Carbon::parse(
                 $tokenResult->token->expires_at
             )->toDateTimeString()
-        ]);
+        ])->cookie('token', $tokenResult->accessToken);
 
         //return response(['user' => Auth::user(), 'access_token' => $accessToken]);
     }

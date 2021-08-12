@@ -23,7 +23,10 @@
           />
         </div>
         <div class="info">
-          <a href="#" class="d-block">Alexander Pierce</a>
+          <a href="#" class="d-block">{{ infoUser.name }}</a>
+        </div>
+        <div class="info">
+          <a href="#" class="d-block" v-on:click="logout">Log out</a>
         </div>
       </div>
 
@@ -52,6 +55,17 @@
           role="menu"
           data-accordion="false"
         >
+            <li class="nav-item">
+                <router-link
+                    class="nav-link"
+                    :class="[{active: $route.name === 'user'}]"
+                    :to="{name: 'user'}"
+                >
+                    <i class="nav-icon fas fa-th"></i>
+                    <p>Users</p>
+                </router-link>
+            </li>
+
           <!-- Add icons to the links using the .nav-icon class
                     with font-awesome or any other icon font library -->
           <li class="nav-item menu-open">
@@ -692,7 +706,33 @@
 <script>
 export default {
   mounted() {
-    console.log("Component mounted.");
+
+    axios
+      .get("https://ecommerce.test/api/user/me")
+      .then((res) => {
+        this.infoUser = res.data;
+      })
+      .catch((error) => window.location.href='/admin/login');
+  },
+  data() {
+    return {
+      token: "",
+      infoUser: "",
+    };
+  },
+  methods: {
+    logout: function () {
+      axios
+        .delete("https://ecommerce.test/api/user/logout")
+        .then((res) => {
+            if(res.data = 'success') {
+                this.$cookies.remove('token');
+                localStorage.removeItem('authenticate');
+                window.location.href='/admin/login';
+            }
+        })
+        .catch((error) => console.log(error));
+    },
   },
 };
 </script>
