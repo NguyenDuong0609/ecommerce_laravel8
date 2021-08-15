@@ -2236,12 +2236,9 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     logout: function logout() {
-      var _this2 = this;
-
       axios["delete"]("https://ecommerce.test/api/user/logout").then(function (res) {
         if (res.data = 'success') {
-          _this2.$cookies.remove('token');
-
+          // this.$cookies.remove('token');
           localStorage.removeItem('authenticate');
           window.location.href = '/admin/login';
         }
@@ -2432,6 +2429,11 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     this.getCategories();
   },
+  watch: {
+    name: function name() {
+      this.slug = this.sanitizeTitle(this.name);
+    }
+  },
   data: function data() {
     return {
       categories: [],
@@ -2492,6 +2494,7 @@ __webpack_require__.r(__webpack_exports__);
       console.log(this.parentSelected);
       axios.put("https://ecommerce.test/api/category/" + this.cate_id, {
         name: this.name,
+        slug: this.slug,
         parent_id: this.parentSelected
       }).then(function (res) {
         if (!res.data.errors) {
@@ -2511,6 +2514,7 @@ __webpack_require__.r(__webpack_exports__);
     add: function add(e) {
       var _this5 = this;
 
+      console.log(this.slug);
       axios.post("https://ecommerce.test/api/category/add", {
         name: this.name,
         slug: this.slug,
@@ -2559,6 +2563,26 @@ __webpack_require__.r(__webpack_exports__);
       })["catch"](function (error) {
         return console.log(error);
       });
+    },
+    sanitizeTitle: function sanitizeTitle(title) {
+      var slug = ""; // Change to lower case
+
+      var titleLower = title.toLowerCase(); // Letter "e"
+
+      slug = titleLower.replace(/e|é|è|ẽ|ẻ|ẹ|ê|ế|ề|ễ|ể|ệ/gi, "e"); // Letter "a"
+
+      slug = slug.replace(/a|á|à|ã|ả|ạ|ă|ắ|ằ|ẵ|ẳ|ặ|â|ấ|ầ|ẫ|ẩ|ậ/gi, "a"); // Letter "o"
+
+      slug = slug.replace(/o|ó|ò|õ|ỏ|ọ|ô|ố|ồ|ỗ|ổ|ộ|ơ|ớ|ờ|ỡ|ở|ợ/gi, "o"); // Letter "u"
+
+      slug = slug.replace(/u|ú|ù|ũ|ủ|ụ|ư|ứ|ừ|ữ|ử|ự/gi, "u"); // Letter "d"
+
+      slug = slug.replace(/đ/gi, "d"); // Trim the last whitespace
+
+      slug = slug.replace(/\s*$/g, ""); // Change whitespace to "-"
+
+      slug = slug.replace(/\s+/g, "-");
+      return slug;
     }
   }
 });
@@ -40457,7 +40481,7 @@ var render = function() {
                   }
                 }
               },
-              [_vm._v("\n          Add User\n        ")]
+              [_vm._v("\n          Add Category\n        ")]
             )
           ]
         ),
@@ -40621,7 +40645,7 @@ var render = function() {
                         type: "text",
                         name: "slug",
                         id: "slug",
-                        placeholder: "Enter slug"
+                        disabled: "disabled"
                       },
                       domProps: { value: _vm.slug },
                       on: {

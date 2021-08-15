@@ -106,7 +106,7 @@ export default {
         .delete("https://ecommerce.test/api/user/logout")
         .then((res) => {
             if(res.data = 'success') {
-                this.$cookies.remove('token');
+                // this.$cookies.remove('token');
                 localStorage.removeItem('authenticate');
                 window.location.href='/admin/login';
             }

@@ -11,7 +11,7 @@
             style="margin-top: 5px; margin-left: 12px"
             v-on:click="popup('Add')"
           >
-            Add User
+            Add Category
           </button>
         </div>
         <div class="row">
@@ -96,7 +96,7 @@
                     v-model="slug"
                     name="slug"
                     id="slug"
-                    placeholder="Enter slug"
+                    disabled="disabled"
                   />
                 </div>
                 <div class="form-group">
@@ -166,6 +166,11 @@ export default {
   mounted() {
     this.getCategories();
   },
+  watch: {
+    name() {
+      this.slug = this.sanitizeTitle(this.name);
+    },
+  },
   data() {
     return {
       categories: [],
@@ -220,6 +225,7 @@ export default {
       axios
         .put("https://ecommerce.test/api/category/" + this.cate_id, {
           name: this.name,
+          slug: this.slug,
           parent_id: this.parentSelected,
         })
         .then((res) => {
@@ -236,6 +242,7 @@ export default {
         .catch((error) => console.log(error));
     },
     add: function (e) {
+      console.log(this.slug);
       axios
         .post("https://ecommerce.test/api/category/add", {
           name: this.name,
@@ -281,6 +288,27 @@ export default {
           }
         })
         .catch((error) => console.log(error));
+    },
+    sanitizeTitle: function (title) {
+      var slug = "";
+      // Change to lower case
+      var titleLower = title.toLowerCase();
+      // Letter "e"
+      slug = titleLower.replace(/e|é|è|ẽ|ẻ|ẹ|ê|ế|ề|ễ|ể|ệ/gi, "e");
+      // Letter "a"
+      slug = slug.replace(/a|á|à|ã|ả|ạ|ă|ắ|ằ|ẵ|ẳ|ặ|â|ấ|ầ|ẫ|ẩ|ậ/gi, "a");
+      // Letter "o"
+      slug = slug.replace(/o|ó|ò|õ|ỏ|ọ|ô|ố|ồ|ỗ|ổ|ộ|ơ|ớ|ờ|ỡ|ở|ợ/gi, "o");
+      // Letter "u"
+      slug = slug.replace(/u|ú|ù|ũ|ủ|ụ|ư|ứ|ừ|ữ|ử|ự/gi, "u");
+      // Letter "d"
+      slug = slug.replace(/đ/gi, "d");
+      // Trim the last whitespace
+      slug = slug.replace(/\s*$/g, "");
+      // Change whitespace to "-"
+      slug = slug.replace(/\s+/g, "-");
+
+      return slug;
     },
   },
 };
