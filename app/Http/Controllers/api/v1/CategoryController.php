@@ -9,10 +9,10 @@ use App\Models\Category;
 
 class CategoryController extends Controller
 {
-    public function categories()
+    public function parentCate()
     {
         try {
-            $data = Category::tree();
+            $data = Category::all();
             return response()->json([
                 'status' => 200,
                 'data' => $data,
@@ -24,6 +24,24 @@ class CategoryController extends Controller
             ]);
         }
     }
+
+    public function categories()
+    {
+        try {
+            // $data = Category::tree();
+            $data = Category::all();
+            return response()->json([
+                'status' => 200,
+                'data' => $data,
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => 500,
+                'errors' => $e->getMessage()
+            ]);
+        }
+    }
+
 
     public function category($id)
     {
@@ -59,6 +77,7 @@ class CategoryController extends Controller
         $category = new Category([
             'name' => $request->name,
             'slug' => $request->slug,
+            'parent_id' => $request->parent_id,
         ]);
 
         $category->save();

@@ -43,6 +43,7 @@ Route::prefix('/category')->group( function() {
         'middleware' => 'auth:api'
     ], function() {
         Route::get('/', [App\Http\Controllers\api\v1\CategoryController::class, 'categories']);
+        Route::get('/parent-cate', [App\Http\Controllers\api\v1\CategoryController::class, 'parentCate']);
         Route::get('/{id}', [App\Http\Controllers\api\v1\CategoryController::class, 'category']);
 
         Route::post('/add', [App\Http\Controllers\api\v1\CategoryController::class, 'create']);

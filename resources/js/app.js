@@ -18,6 +18,7 @@ Vue.component('login', require('./pages/Login').default);
 
 import DashBoard from './pages/DashBoard';
 import User from './pages/User';
+import Category from './pages/Category';
 
 const routes = [
     {
@@ -28,6 +29,11 @@ const routes = [
         path: '/admin/user',
         component: User,
         name: 'user',
+    },
+    {
+        path: '/admin/category',
+        component: Category,
+        name: 'category',
     }
 ];
 
