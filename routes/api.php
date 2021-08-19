@@ -51,3 +51,17 @@ Route::prefix('/category')->group( function() {
         Route::delete('/{id}', [App\Http\Controllers\api\v1\CategoryController::class, 'destroy']);
     });
 });
+
+
+// Products
+Route::prefix('/product')->group( function() {
+    Route::group([
+        'middleware' => 'auth:api'
+    ], function() {
+        Route::get('/', [\App\Http\Controllers\api\v1\ProductController::class, 'products']);
+        Route::get('/{id}', [App\Http\Controllers\api\v1\ProductController::class, 'product']);
+        Route::post('/add', [App\Http\Controllers\api\v1\ProductController::class, 'create']);
+        Route::post('/{id}', [App\Http\Controllers\api\v1\ProductController::class, 'update']);
+        Route::delete('/{id}', [App\Http\Controllers\api\v1\ProductController::class, 'destroy']);
+    });
+});
