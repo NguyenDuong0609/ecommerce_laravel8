@@ -12,7 +12,7 @@ class ProductController extends Controller
     public function products()
     {
         try {
-            $data = Product::all();
+            $data = Product::with('category')->paginate(2);
             return response()->json([
                 'status' => 200,
                 'data' => $data,
@@ -27,7 +27,7 @@ class ProductController extends Controller
 
     public function create(Request $request)
     {
-        $images = [];
+        $images = null;
         $validator = Validator::make($request->all(), [
             'slug' => 'required|string|max:55',
             'title' => 'required',
@@ -51,6 +51,7 @@ class ProductController extends Controller
         }
 
         if ($request->hasFile('files')) {
+
             $files = $request->file('files');
             $allowedfileExtension=['jpg','png'];
             $exe_flg = true;
@@ -69,14 +70,20 @@ class ProductController extends Controller
             if($exe_flg) {
                 $i=1;
 				foreach ($files as $file) {
-                    $fileName = $request->title.$i.".". $file->getClientOriginalExtension();
+
+                    $fileName = $request->slug.$i.".". $file->getClientOriginalExtension();
+
                     $file->move(public_path('images'), $fileName);
-                    $images[] = $fileName;
+
+                    $images = $images.",".$fileName;
                     $i++;
+
 				}
-                $request['images'] = json_encode($images);
+
+                $request['images'] = $images;
 
                 $product = new Product($request->all());
+
                 $product->save();
 
                 return response()->json([
@@ -99,6 +106,7 @@ class ProductController extends Controller
 
     public function update(Request $request, $id)
     {
+        $images = null;
         try {
             $data = Product::find($id);
 
@@ -139,17 +147,12 @@ class ProductController extends Controller
                         foreach ($files as $file) {
                             $fileName = $request->title.$i.".". $file->getClientOriginalExtension();
                             $file->move(public_path('images'), $fileName);
-                            $images[] = $fileName;
+
+                            $images = $images.",".$fileName;
                             $i++;
                         }
                         $request['images'] = json_encode($images);
 
-                        $data->update($request->all());
-
-                        return response()->json([
-                            'status' => 200,
-                            'data'   => $data,
-                        ]);
                     } else {
                         return response()->json([
                             'status' => 204,
@@ -157,6 +160,13 @@ class ProductController extends Controller
                         ]);
                     }
                 }
+
+                $data->update($request->all());
+
+                        return response()->json([
+                            'status' => 200,
+                            'data'   => $data,
+                        ]);
             }
 
         } catch (\Exception $e) {
@@ -170,7 +180,11 @@ class ProductController extends Controller
     public function product($id)
     {
         try {
-            $data = Product::where('slug','like','%'.$id.'%')->orWhere('id', $id)->get();
+            if(is_numeric($id)) {
+                $data = Product::where('id', $id)->get();
+            }else{
+                $data = Product::where('slug','like','%'.$id.'%')->get();
+            }
             return response()->json([
                 'status' => 200,
                 'data' => $data,

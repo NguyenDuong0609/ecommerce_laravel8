@@ -75,6 +75,16 @@
                     <p>Category</p>
                 </router-link>
             </li>
+            <li class="nav-item">
+                <router-link
+                    class="nav-link"
+                    :class="[{active: $route.name === 'product'}]"
+                    :to="{name: 'product'}"
+                >
+                    <i class="fas fa-box"></i></i>
+                    <p>Product</p>
+                </router-link>
+            </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

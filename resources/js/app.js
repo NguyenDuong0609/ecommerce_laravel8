@@ -19,6 +19,8 @@ Vue.component('login', require('./pages/Login').default);
 import DashBoard from './pages/DashBoard';
 import User from './pages/User';
 import Category from './pages/Category';
+import ListProduct from './pages/product/list';
+import CreateProduct from './pages/product/create';
 
 const routes = [
     {
@@ -34,6 +36,21 @@ const routes = [
         path: '/admin/category',
         component: Category,
         name: 'category',
+    },
+    {
+        path: '/admin/product',
+        component: ListProduct,
+        name: 'product',
+    },
+    {
+        path: '/admin/product/add',
+        component: CreateProduct,
+        name: 'createproduct',
+    },
+    {
+        path: '/admin/product/:idProduct',
+        component: CreateProduct,
+        name: 'getproduct',
     }
 ];
 
