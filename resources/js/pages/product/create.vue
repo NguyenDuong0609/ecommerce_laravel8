@@ -16,6 +16,7 @@
                     type="text"
                     class="form-control"
                     placeholder="Enter title"
+                    id="title"
                     v-model="title"
                   />
                 </div>
@@ -50,6 +51,7 @@
                       <input
                         type="file"
                         class="custom-file-input"
+                        id="file"
                         v-on:change="onFileChange"
                         multiple
                       />
@@ -65,6 +67,7 @@
                     type="text"
                     class="form-control"
                     placeholder="Enter price"
+                    id="price"
                     v-model="price"
                   />
                 </div>
@@ -73,6 +76,7 @@
                   <input
                     type="number"
                     class="form-control"
+                    id="quality"
                     placeholder="Enter quality"
                     v-model="quality"
                   />
@@ -82,6 +86,7 @@
                   <input
                     type="text"
                     class="form-control"
+                    id="slug"
                     placeholder="Enter title"
                     v-model="slug"
                     disabled="disabled"
@@ -180,6 +185,11 @@
 
 <script>
 export default {
+//   computed: {
+//     product() {
+//       return this.$store.state.product;
+//     },
+//   },
   mounted() {
     $(function () {
       // Summernote
@@ -201,7 +211,6 @@ export default {
     });
 
     if (this.$route.params.idProduct !== undefined) {
-      console.log("mount");
       axios
         .get("https://ecommerce.test/api/product/" + this.$route.params.idProduct)
         .then((res) => {
@@ -285,7 +294,6 @@ export default {
       axios
         .post("https://ecommerce.test/api/product/add", formData, config)
         .then((res) => {
-          console.log(res);
           if (!res.data.errors) {
             $("#modal-default").css("display", "none");
             $("div").removeClass("modal-backdrop fade show");

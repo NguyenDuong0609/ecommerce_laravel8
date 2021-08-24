@@ -161,8 +161,15 @@
 </template>
 
 <script>
+
 export default {
+    // computed: {
+    //     products() {
+    //         return this.$store.state.products.data;
+    //     },
+    // },
   mounted() {
+    //   this.$store.dispatch('getProducts');
     this.getProducts();
   },
   data() {
