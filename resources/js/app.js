@@ -18,6 +18,8 @@ Vue.component('admin-component', require('./components/AdminComponent.vue').defa
 Vue.component('login', require('./pages/Login').default);
 
 import DashBoard from './pages/DashBoard';
+import Producer from './pages/Producer';
+import TypeProduct from './pages/TypeProduct';
 import User from './pages/User';
 import Category from './pages/Category';
 import ListProduct from './pages/product/list';
@@ -27,6 +29,16 @@ const routes = [
     {
         path: '/admin',
         component: DashBoard
+    },
+    {
+        path: '/admin/producer',
+        component: Producer,
+        name: 'producer',
+    },
+    {
+        path: '/admin/type-product',
+        component: TypeProduct,
+        name: 'typeProduct',
     },
     {
         path: '/admin/user',

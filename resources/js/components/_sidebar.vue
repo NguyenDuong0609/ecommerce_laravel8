@@ -81,8 +81,28 @@
                     :class="[{active: $route.name === 'product'}]"
                     :to="{name: 'product'}"
                 >
-                    <i class="fas fa-box"></i></i>
+                    <i class="fas fa-box"></i>
                     <p>Product</p>
+                </router-link>
+            </li>
+            <li class="nav-item">
+                <router-link
+                    class="nav-link"
+                    :class="[{active: $route.name === 'producer'}]"
+                    :to="{name: 'producer'}"
+                >
+                    <i class="fas fa-user-tie"></i>
+                    <p>Producer</p>
+                </router-link>
+            </li>
+             <li class="nav-item">
+                <router-link
+                    class="nav-link"
+                    :class="[{active: $route.name === 'typeProduct'}]"
+                    :to="{name: 'typeProduct'}"
+                >
+                    <i class="fas fa-list-ol"></i>
+                    <p>Type Product</p>
                 </router-link>
             </li>
         </ul>

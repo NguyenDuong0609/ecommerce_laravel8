@@ -126,49 +126,49 @@
                 <div class="form-group">
                   <label>Category</label>
                   <select
+                    id="category"
                     class="form-control select2"
                     style="width: 100%"
-                    v-model="category_id"
+                    v-model="categorySelected"
                   >
-                    <option selected="selected">Alabama</option>
-                    <option>Alaska</option>
-                    <option>California</option>
-                    <option>Delaware</option>
-                    <option>Tennessee</option>
-                    <option>Texas</option>
-                    <option>Washington</option>
+                    <option value="">Please select one</option>
+                    <option
+                      v-for="(category, index) in categories"
+                      v-bind:value="category.id"
+                    >
+                      {{ category.name }}
+                    </option>
                   </select>
                 </div>
                 <div class="form-group">
                   <label>Product Type</label>
                   <select
+                    id="typeProduct"
                     class="form-control select2"
                     style="width: 100%"
-                    v-model="product_type_id"
+                    v-model="product_type_selected"
                   >
-                    <option selected="selected">Alabama</option>
-                    <option>Alaska</option>
-                    <option>California</option>
-                    <option>Delaware</option>
-                    <option>Tennessee</option>
-                    <option>Texas</option>
-                    <option>Washington</option>
+                    <option value="">Please select one</option>
+                    <option
+                      v-for="(product_type, index) in product_types"
+                      v-bind:value="product_type.id"
+                    >
+                      {{ product_type.name }}
+                    </option>
                   </select>
                 </div>
                 <div class="form-group">
                   <label>Branch</label>
                   <select
+                    id="branch"
                     class="form-control select2"
                     style="width: 100%"
-                    v-model="brand_id"
+                    v-model="brandSelected"
                   >
-                    <option selected="selected">Alabama</option>
-                    <option>Alaska</option>
-                    <option>California</option>
-                    <option>Delaware</option>
-                    <option>Tennessee</option>
-                    <option>Texas</option>
-                    <option>Washington</option>
+                    <option value="">Please select one</option>
+                    <option v-for="(brand, index) in brands" v-bind:value="brand.id">
+                      {{ brand.name }}
+                    </option>
                   </select>
                 </div>
               </div>
@@ -185,11 +185,11 @@
 
 <script>
 export default {
-//   computed: {
-//     product() {
-//       return this.$store.state.product;
-//     },
-//   },
+  //   computed: {
+  //     product() {
+  //       return this.$store.state.product;
+  //     },
+  //   },
   mounted() {
     $(function () {
       // Summernote
@@ -223,12 +223,19 @@ export default {
           this.slug = res.data.data[0].slug;
           this.status = res.data.data[0].status;
           this.images = res.data.data[0].images;
+          this.categorySelected = res.data.data[0].category_id;
+          this.brandSelected = res.data.data[0].brand_id;
+          this.product_type_selected = res.data.data[0].product_type_id;
         })
         .catch((error) => console.log(error));
       this.short_description = localStorage.getItem("short_description");
       this.description = localStorage.getItem("description");
       this.specification = localStorage.getItem("specification");
     }
+
+    this.getBrand();
+    this.getTypeProduct();
+    this.getCategories();
   },
   watch: {
     title() {
@@ -238,13 +245,15 @@ export default {
   data() {
     return {
       images: [],
-      categories: "",
-      product_types: "",
-      brands: "",
+      categories: [],
+      categorySelected: "",
+      product_types: [],
+      brandSelected: "",
+      brands: [],
       title: "",
       brand_id: 1,
       category_id: 1,
-      product_type_id: 1,
+      product_type_selected: "",
       price: "",
       status: "",
       short_description: "",
@@ -257,6 +266,30 @@ export default {
     };
   },
   methods: {
+    getBrand: function () {
+      axios
+        .get("https://ecommerce.test/api/producer")
+        .then((res) => {
+          this.brands = res.data.data;
+        })
+        .catch((error) => console.log(error));
+    },
+    getTypeProduct: function () {
+      axios
+        .get("https://ecommerce.test/api/type_product")
+        .then((res) => {
+          this.product_types = res.data.data;
+        })
+        .catch((error) => console.log(error));
+    },
+    getCategories: function () {
+      axios
+        .get("https://ecommerce.test/api/category")
+        .then((res) => {
+          this.categories = res.data.data;
+        })
+        .catch((error) => console.log(error));
+    },
     onFileChange(e) {
       let selectedFile = e.target.files;
       for (let i = 0; i < selectedFile.length; i++) {
@@ -267,14 +300,12 @@ export default {
       this.short_description = $("#shortDescription").val();
       this.description = $("#description").val();
       this.specification = $("#specification").val();
-      this.brand_id = 1;
-      this.category_id = 1;
-      this.product_type_id = 1;
+
       let formData = new FormData();
       formData.append("title", this.title);
-      formData.append("brand_id", this.brand_id);
-      formData.append("category_id", this.category_id);
-      formData.append("product_type_id", this.product_type_id);
+      formData.append("brand_id", $("#branch").val());
+      formData.append("category_id", $("#category").val());
+      formData.append("product_type_id", $("#typeProduct").val());
       formData.append("price", this.price);
       formData.append("status", this.status);
       formData.append("short_description", this.short_description);
@@ -291,6 +322,7 @@ export default {
           "content-type": "multipart/form-data",
         },
       };
+
       axios
         .post("https://ecommerce.test/api/product/add", formData, config)
         .then((res) => {
@@ -309,14 +341,11 @@ export default {
       this.short_description = $("#shortDescription").val();
       this.description = $("#description").val();
       this.specification = $("#specification").val();
-      this.brand_id = 1;
-      this.category_id = 1;
-      this.product_type_id = 1;
       let formData = new FormData();
       formData.append("title", this.title);
-      formData.append("brand_id", this.brand_id);
-      formData.append("category_id", this.category_id);
-      formData.append("product_type_id", this.product_type_id);
+      formData.append("brand_id", $("#branch").val());
+      formData.append("category_id", $("#category").val());
+      formData.append("product_type_id", $("#typeProduct").val());
       formData.append("price", this.price);
       formData.append("status", this.status);
       formData.append("short_description", this.short_description);
