@@ -25,3 +25,6 @@ Route::get('/admin', [App\Http\Controllers\AdminController::class, 'index']);
 Route::get('/admin/login/', [App\Http\Controllers\AdminController::class, 'login']);
 
 
+// Route Client
+Route::get('/', [App\Http\Controllers\IndexController::class, 'index']);
+Route::get('/product-detail', [App\Http\Controllers\IndexController::class, 'productDetail']);
