@@ -28,3 +28,5 @@ Route::get('/admin/login/', [App\Http\Controllers\AdminController::class, 'login
 // Route Client
 Route::get('/', [App\Http\Controllers\IndexController::class, 'index']);
 Route::get('/product-detail', [App\Http\Controllers\IndexController::class, 'productDetail']);
+Route::get('/category/{category_id}', [App\Http\Controllers\IndexController::class, 'productCategory']);
+Route::get('/product/{product_id}', [App\Http\Controllers\IndexController::class, 'productDetail']);

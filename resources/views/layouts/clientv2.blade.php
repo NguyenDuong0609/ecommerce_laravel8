@@ -10,19 +10,19 @@
         <link rel="shortcut icon" type="image/x-icon" href="ezone/assets/img/favicon.png">
 
 		<!-- all css here -->
-        <link rel="stylesheet" href="ezone/assets/css/bootstrap.min.css">
-        <link rel="stylesheet" href="ezone/assets/css/magnific-popup.css">
-        <link rel="stylesheet" href="ezone/assets/css/animate.css">
-        <link rel="stylesheet" href="ezone/assets/css/owl.carousel.min.css">
-        <link rel="stylesheet" href="ezone/assets/css/themify-icons.css">
-        <link rel="stylesheet" href="ezone/assets/css/pe-icon-7-stroke.css">
-        <link rel="stylesheet" href="ezone/assets/css/icofont.css">
-        <link rel="stylesheet" href="ezone/assets/css/meanmenu.min.css">
-        <link rel="stylesheet" href="ezone/assets/css/easyzoom.css">
-        <link rel="stylesheet" href="ezone/assets/css/bundle.css">
-        <link rel="stylesheet" href="ezone/assets/css/style.css">
-        <link rel="stylesheet" href="ezone/assets/css/responsive.css">
-        <script src="ezone/assets/js/vendor/modernizr-2.8.3.min.js"></script>
+        <link rel="stylesheet" href="../ezone/assets/css/bootstrap.min.css">
+        <link rel="stylesheet" href="../ezone/assets/css/magnific-popup.css">
+        <link rel="stylesheet" href="../ezone/assets/css/animate.css">
+        <link rel="stylesheet" href="../ezone/assets/css/owl.carousel.min.css">
+        <link rel="stylesheet" href="../ezone/assets/css/themify-icons.css">
+        <link rel="stylesheet" href="../ezone/assets/css/pe-icon-7-stroke.css">
+        <link rel="stylesheet" href="../ezone/assets/css/icofont.css">
+        <link rel="stylesheet" href="../ezone/assets/css/meanmenu.min.css">
+        <link rel="stylesheet" href="../ezone/assets/css/easyzoom.css">
+        <link rel="stylesheet" href="../ezone/assets/css/bundle.css">
+        <link rel="stylesheet" href="../ezone/assets/css/style.css">
+        <link rel="stylesheet" href="../ezone/assets/css/responsive.css">
+        <script src="../ezone/assets/js/vendor/modernizr-2.8.3.min.js"></script>
     </head>
     <body>
         <!--[if lt IE 8]>
@@ -211,17 +211,17 @@
         </div>
 
 		<!-- all js here -->
-        <script src="ezone/assets/js/vendor/jquery-1.12.0.min.js"></script>
-        <script src="ezone/assets/js/popper.js"></script>
-        <script src="ezone/assets/js/bootstrap.min.js"></script>
-        <script src="ezone/assets/js/jquery.magnific-popup.min.js"></script>
-        <script src="ezone/assets/js/isotope.pkgd.min.js"></script>
-        <script src="ezone/assets/js/imagesloaded.pkgd.min.js"></script>
-        <script src="ezone/assets/js/jquery.counterup.min.js"></script>
-        <script src="ezone/assets/js/waypoints.min.js"></script>
-        <script src="ezone/assets/js/ajax-mail.js"></script>
-        <script src="ezone/assets/js/owl.carousel.min.js"></script>
-        <script src="ezone/assets/js/plugins.js"></script>
-        <script src="ezone/assets/js/main.js"></script>
+        <script src="../ezone/assets/js/vendor/jquery-1.12.0.min.js"></script>
+        <script src="../ezone/assets/js/popper.js"></script>
+        <script src="../ezone/assets/js/bootstrap.min.js"></script>
+        <script src="../ezone/assets/js/jquery.magnific-popup.min.js"></script>
+        <script src="../ezone/assets/js/isotope.pkgd.min.js"></script>
+        <script src="../ezone/assets/js/imagesloaded.pkgd.min.js"></script>
+        <script src="../ezone/assets/js/jquery.counterup.min.js"></script>
+        <script src="../ezone/assets/js/waypoints.min.js"></script>
+        <script src="../ezone/assets/js/ajax-mail.js"></script>
+        <script src="../ezone/assets/js/owl.carousel.min.js"></script>
+        <script src="../ezone/assets/js/plugins.js"></script>
+        <script src="../ezone/assets/js/main.js"></script>
     </body>
 </html>

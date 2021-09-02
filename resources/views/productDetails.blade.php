@@ -1,12 +1,13 @@
 @extends('layouts.clientv2')
 @section('content')
-    <div class="breadcrumb-area pt-205 pb-210" style="background-image: url(ezone/assets/img/bg/breadcrumb.jpg)">
+    <div class="breadcrumb-area pt-205 pb-210" style="background-image: url(../ezone/assets/img/bg/Samsung-sgalaxy-note-9-banner-web.jpg)">
         <div class="container">
             <div class="breadcrumb-content text-center">
-                <h2>product details</h2>
+                <h2 style="color: black;">product details</h2>
                 <ul>
-                    <li><a href="#">home</a></li>
-                    <li> product details </li>
+                    <li><a href="#" style="color: black;">home /</a></li>
+                    <li><a href="{{ url('/') }}/category/{{ $productDetail[0]->category_id }}" style="color: black;">{{ $breadcrumb['category'] }} /</a></li>
+                    <li style="color: black;">{{ $breadcrumb['product'] }}</li>
                 </ul>
             </div>
         </div>
@@ -18,59 +19,48 @@
                     <div class="product-details-img-content">
                         <div class="product-details-tab mr-70">
                             <div class="product-details-large tab-content">
-                                <div class="tab-pane active show fade" id="pro-details1" role="tabpanel">
-                                    <div class="easyzoom easyzoom--overlay">
-                                        <a href="ezone/assets/img/product-details/bl1.jpg">
-                                            <img src="ezone/assets/img/product-details/l1.jpg" alt="">
-                                        </a>
+                                <?php $images = explode(",", $productDetail[0]->images) ?>
+                                @for ($i=1; $i< count($images); $i++)
+                                    @if($i == 1)
+                                    <div class="tab-pane active show fade" id="pro-details{{ $i }}" role="tabpanel">
+                                        <div class="easyzoom easyzoom--overlay">
+                                            <a href="../images/{{ $images[$i] }}">
+                                                <img src="../images/{{ $images[$i] }}" alt="">
+                                            </a>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="tab-pane fade" id="pro-details2" role="tabpanel">
-                                    <div class="easyzoom easyzoom--overlay">
-                                        <a href="ezone/assets/img/product-details/bl2.jpg">
-                                            <img src="ezone/assets/img/product-details/l2.jpg" alt="">
-                                        </a>
+                                    @else
+                                    <div class="tab-pane fade" id="pro-details{{ $i }}" role="tabpanel">
+                                        <div class="easyzoom easyzoom--overlay">
+                                            <a href=".../images/{{ $images[$i] }}">
+                                                <img src="../images/{{ $images[$i] }}" alt="">
+                                            </a>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="tab-pane fade" id="pro-details3" role="tabpanel">
-                                    <div class="easyzoom easyzoom--overlay">
-                                        <a href="ezone/assets/img/product-details/bl3.jpg">
-                                            <img src="ezone/assets/img/product-details/l3.jpg" alt="">
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="tab-pane fade" id="pro-details4" role="tabpanel">
-                                    <div class="easyzoom easyzoom--overlay">
-                                        <a href="ezone/assets/img/product-details/bl4.jpg">
-                                            <img src="ezone/assets/img/product-details/l4.jpg" alt="">
-                                        </a>
-                                    </div>
-                                </div>
+                                    @endif
+                                @endfor
                             </div>
                             <div class="product-details-small nav mt-12" role=tablist>
-                                <a class="active mr-12" href="#pro-details1" data-toggle="tab" role="tab"
-                                    aria-selected="true">
-                                    <img src="ezone/assets/img/product-details/s1.jpg" alt="">
-                                </a>
-                                <a class="mr-12" href="#pro-details2" data-toggle="tab" role="tab"
-                                    aria-selected="true">
-                                    <img src="ezone/assets/img/product-details/s2.jpg" alt="">
-                                </a>
-                                <a class="mr-12" href="#pro-details3" data-toggle="tab" role="tab"
-                                    aria-selected="true">
-                                    <img src="ezone/assets/img/product-details/s3.jpg" alt="">
-                                </a>
-                                <a class="mr-12" href="#pro-details4" data-toggle="tab" role="tab"
-                                    aria-selected="true">
-                                    <img src="ezone/assets/img/product-details/s4.jpg" alt="">
-                                </a>
+                                @for ($i=1; $i< count($images); $i++)
+                                    @if($i == 1)
+                                    <a class="active mr-12" href="#pro-details{{ $i }}" data-toggle="tab" role="tab"
+                                        aria-selected="true">
+                                        <img src="../images/{{ $images[$i] }}" alt="" width="141" height="135">
+                                    </a>
+                                    @else
+                                    <a class="mr-12" href="#pro-details{{ $i }}" data-toggle="tab" role="tab"
+                                        aria-selected="true">
+                                        <img src="../images/{{ $images[$i] }}" alt="" width="141" height="135">
+                                    </a>
+                                    @endif
+                                @endfor
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-12 col-lg-5 col-12">
                     <div class="product-details-content">
-                        <h3>Handcrafted Supper Mug</h3>
+                        <h3>{{ $productDetail[0]->title }}</h3>
                         <div class="rating-number">
                             <div class="quick-view-rating">
                                 <i class="pe-7s-star red-star"></i>
@@ -84,32 +74,14 @@
                             </div>
                         </div>
                         <div class="details-price">
-                            <span>$120.00</span>
+                            <span>${{ $productDetail[0]->price }}</span>
                         </div>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmol tempor incidid ut labore
-                            et dolore magna aliqua. Ut enim ad minim veni quis nostrud exercitation ullamco laboris nisi ut
-                            aliquip ex ea commodo consequat. Duis aute irure dolor in</p>
-                        <div class="quick-view-select">
-                            <div class="select-option-part">
-                                <label>Size*</label>
-                                <select class="select">
-                                    <option value="">- Please Select -</option>
-                                    <option value="">xl</option>
-                                    <option value="">ml</option>
-                                    <option value="">m</option>
-                                    <option value="">sl</option>
-                                </select>
-                            </div>
-                            <div class="select-option-part">
-                                <label>Color*</label>
-                                <select class="select">
-                                    <option value="">- Please Select -</option>
-                                    <option value="">orange</option>
-                                    <option value="">pink</option>
-                                    <option value="">yellow</option>
-                                </select>
-                            </div>
+                        <p>{!! $productDetail[0]->short_description !!}</p>
+
+                        <div class="quickview-btn-cart" style="margin-left: 0px;">
+                            <a class="btn-hover-black" href="#" data-toggle="modal" data-target="#thong-tin-cau-hinh">Xem cấu hình chi tiết</a>
                         </div>
+
                         <div class="quickview-plus-minus">
                             <div class="cart-plus-minus">
                                 <input type="text" value="02" name="qtybutton" class="cart-plus-minus-box">
@@ -124,46 +96,7 @@
                         <div class="product-details-cati-tag mt-35">
                             <ul>
                                 <li class="categories-title">Categories :</li>
-                                <li><a href="#">fashion</a></li>
-                                <li><a href="#">electronics</a></li>
-                                <li><a href="#">toys</a></li>
-                                <li><a href="#">food</a></li>
-                                <li><a href="#">jewellery</a></li>
-                            </ul>
-                        </div>
-                        <div class="product-details-cati-tag mtb-10">
-                            <ul>
-                                <li class="categories-title">Tags :</li>
-                                <li><a href="#">fashion</a></li>
-                                <li><a href="#">electronics</a></li>
-                                <li><a href="#">toys</a></li>
-                                <li><a href="#">food</a></li>
-                                <li><a href="#">jewellery</a></li>
-                            </ul>
-                        </div>
-                        <div class="product-share">
-                            <ul>
-                                <li class="categories-title">Share :</li>
-                                <li>
-                                    <a href="#">
-                                        <i class="icofont icofont-social-facebook"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="icofont icofont-social-twitter"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="icofont icofont-social-pinterest"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="icofont icofont-social-flikr"></i>
-                                    </a>
-                                </li>
+                                <li><a href="#">{{ $productDetail[0]->category->name }}</a></li>
                             </ul>
                         </div>
                     </div>
@@ -184,9 +117,7 @@
                 </div>
                 <div class="description-review-text tab-content">
                     <div class="tab-pane active show fade" id="pro-dec" role="tabpanel">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                            laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in</p>
+                        <p>{!! $productDetail[0]->description !!}</p>
                     </div>
                     <div class="tab-pane fade" id="pro-review" role="tabpanel">
                         <a href="#">Be the first to write your review!</a>
@@ -203,10 +134,11 @@
             </div>
             <div class="product-style">
                 <div class="related-product-active owl-carousel">
+                    @foreach ($productRelated as $product)
                     <div class="product-wrapper">
                         <div class="product-img">
-                            <a href="#">
-                                <img src="ezone/assets/img/product/fashion-colorful/1.jpg" alt="">
+                            <a href="{{ url('/') }}/product/{{ $product->id }}">
+                                <img src="../images/<?php echo explode(",", $product->images)[1] ?>" alt="">
                             </a>
                             <span>hot</span>
                             <div class="product-action">
@@ -223,154 +155,32 @@
                             </div>
                         </div>
                         <div class="product-content">
-                            <h4><a href="#">Arifo Stylas Dress</a></h4>
-                            <span>$115.00</span>
+                            <h4><a href="#">{{ $product->title }}</a></h4>
+                            <span>${{ $product->price }}</span>
                         </div>
                     </div>
-                    <div class="product-wrapper">
-                        <div class="product-img">
-                            <a href="#">
-                                <img src="ezone/assets/img/product/fashion-colorful/2.jpg" alt="">
-                            </a>
-                            <div class="product-action">
-                                <a class="animate-left" title="Wishlist" href="#">
-                                    <i class="pe-7s-like"></i>
-                                </a>
-                                <a class="animate-top" title="Add To Cart" href="#">
-                                    <i class="pe-7s-cart"></i>
-                                </a>
-                                <a class="animate-right" title="Quick View" data-toggle="modal" data-target="#exampleModal"
-                                    href="#">
-                                    <i class="pe-7s-look"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="product-content">
-                            <h4><a href="#">Arifo Stylas Dress</a></h4>
-                            <span>$115.00</span>
-                        </div>
-                    </div>
-                    <div class="product-wrapper">
-                        <div class="product-img">
-                            <a href="#">
-                                <img src="ezone/assets/img/product/fashion-colorful/3.jpg" alt="">
-                            </a>
-                            <span>hot</span>
-                            <div class="product-action">
-                                <a class="animate-left" title="Wishlist" href="#">
-                                    <i class="pe-7s-like"></i>
-                                </a>
-                                <a class="animate-top" title="Add To Cart" href="#">
-                                    <i class="pe-7s-cart"></i>
-                                </a>
-                                <a class="animate-right" title="Quick View" data-toggle="modal" data-target="#exampleModal"
-                                    href="#">
-                                    <i class="pe-7s-look"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="product-content">
-                            <h4><a href="#">Arifo Stylas Dress</a></h4>
-                            <span>$115.00</span>
-                        </div>
-                    </div>
-                    <div class="product-wrapper">
-                        <div class="product-img">
-                            <a href="#">
-                                <img src="ezone/assets/img/product/fashion-colorful/4.jpg" alt="">
-                            </a>
-                            <div class="product-action">
-                                <a class="animate-left" title="Wishlist" href="#">
-                                    <i class="pe-7s-like"></i>
-                                </a>
-                                <a class="animate-top" title="Add To Cart" href="#">
-                                    <i class="pe-7s-cart"></i>
-                                </a>
-                                <a class="animate-right" title="Quick View" data-toggle="modal"
-                                    data-target="#exampleModal" href="#">
-                                    <i class="pe-7s-look"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="product-content">
-                            <h4><a href="#">Arifo Stylas Dress</a></h4>
-                            <span>$115.00</span>
-                        </div>
-                    </div>
-                    <div class="product-wrapper">
-                        <div class="product-img">
-                            <a href="#">
-                                <img src="ezone/assets/img/product/fashion-colorful/5.jpg" alt="">
-                            </a>
-                            <span>hot</span>
-                            <div class="product-action">
-                                <a class="animate-left" title="Wishlist" href="#">
-                                    <i class="pe-7s-like"></i>
-                                </a>
-                                <a class="animate-top" title="Add To Cart" href="#">
-                                    <i class="pe-7s-cart"></i>
-                                </a>
-                                <a class="animate-right" title="Quick View" data-toggle="modal"
-                                    data-target="#exampleModal" href="#">
-                                    <i class="pe-7s-look"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="product-content">
-                            <h4><a href="#">Arifo Stylas Dress</a></h4>
-                            <span>$115.00</span>
-                        </div>
-                    </div>
-                    <div class="product-wrapper">
-                        <div class="product-img">
-                            <a href="#">
-                                <img src="ezone/assets/img/product/fashion-colorful/1.jpg" alt="">
-                            </a>
-                            <div class="product-action">
-                                <a class="animate-left" title="Wishlist" href="#">
-                                    <i class="pe-7s-like"></i>
-                                </a>
-                                <a class="animate-top" title="Add To Cart" href="#">
-                                    <i class="pe-7s-cart"></i>
-                                </a>
-                                <a class="animate-right" title="Quick View" data-toggle="modal"
-                                    data-target="#exampleModal" href="#">
-                                    <i class="pe-7s-look"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="product-content">
-                            <h4><a href="#">Arifo Stylas Dress</a></h4>
-                            <span>$115.00</span>
-                        </div>
-                    </div>
-                    <div class="product-wrapper">
-                        <div class="product-img">
-                            <a href="#">
-                                <img src="ezone/assets/img/product/fashion-colorful/2.jpg" alt="">
-                            </a>
-                            <span>hot</span>
-                            <div class="product-action">
-                                <a class="animate-left" title="Wishlist" href="#">
-                                    <i class="pe-7s-like"></i>
-                                </a>
-                                <a class="animate-top" title="Add To Cart" href="#">
-                                    <i class="pe-7s-cart"></i>
-                                </a>
-                                <a class="animate-right" title="Quick View" data-toggle="modal"
-                                    data-target="#exampleModal" href="#">
-                                    <i class="pe-7s-look"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="product-content">
-                            <h4><a href="#">Arifo Stylas Dress</a></h4>
-                            <span>$115.00</span>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>
     </div>
     <!-- product area end -->
+
+    {{--  modal thong tin chi tiet  --}}
+    <div class="modal fade" id="thong-tin-cau-hinh" tabindex="-1" role="dialog" aria-hidden="true">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span class="pe-7s-close" aria-hidden="true"></span>
+        </button>
+        <div class="modal-dialog modal-compare-width" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <form action="#">
+                        <div class="table-content compare-style table-responsive">
+                            {!! $productDetail[0]->specification !!}
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 @stop
