@@ -23,6 +23,8 @@
         <link rel="stylesheet" href="../ezone/assets/css/style.css">
         <link rel="stylesheet" href="../ezone/assets/css/responsive.css">
         <script src="../ezone/assets/js/vendor/modernizr-2.8.3.min.js"></script>
+
+        <script src="https://code.jquery.com/jquery-3.6.0.js" crossorigin="anonymous"></script>
     </head>
     <body>
         <!--[if lt IE 8]>

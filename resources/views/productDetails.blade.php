@@ -86,8 +86,9 @@
                             <div class="cart-plus-minus">
                                 <input type="text" value="02" name="qtybutton" class="cart-plus-minus-box">
                             </div>
+
                             <div class="quickview-btn-cart">
-                                <a class="btn-hover-black" href="#">add to cart</a>
+                                <a href="javascript:void(0)" class="btn-hover-black" data-quantity="1" data-product-id="{{ $productDetail[0]->id }}" data-price="{{ $productDetail[0]->price }}" data-name="{{ $productDetail[0]->title }}">add to cart</a>
                             </div>
                             <div class="quickview-btn-wishlist">
                                 <a class="btn-hover" href="#"><i class="pe-7s-like"></i></a>
@@ -183,4 +184,36 @@
             </div>
         </div>
     </div>
+
+    <script type="text/javascript">
+
+       $(document).on('click', '.btn-hover-black', function(e) {
+           e.preventDefault();
+           var product_id = $(this).data('product-id');
+           var product_qty = $(this).data('quantity');
+           var product_price = $(this).data('price');
+           var product_name = $(this).data('name');
+           var image = $(this).data('image');
+
+           var token = "{{ csrf_token() }}";
+           var path = "{{ route('cart.store') }}";
+
+           $.ajax({
+               url: path,
+               type: "POST",
+               dataType: "JSON",
+               data: {
+                   product_id: product_id,
+                   product_qty: product_qty,
+                   product_price: product_price,
+                   product_name: product_name,
+                   image: image,
+                   _token: token,
+               },
+               success: function(data) {
+                    $("#test").text(data["cartCount"]);
+               }
+           })
+       })
+    </script>
 @stop
