@@ -56,6 +56,11 @@
             @include('partials.slider')
         </div>
     </div>
+    @if(session()->has('message'))
+    <div class="alert alert-success" role="alert">
+        {{ session('message') }}
+    </div>
+    @endif
     @yield('content')
     @include('partials.footer')
     <!-- modal -->

@@ -30,9 +30,19 @@ Route::get('/', [App\Http\Controllers\IndexController::class, 'index']);
 Route::get('/product-detail', [App\Http\Controllers\IndexController::class, 'productDetail']);
 Route::get('/category/{category_id}', [App\Http\Controllers\IndexController::class, 'productCategory']);
 Route::get('/product/{product_id}', [App\Http\Controllers\IndexController::class, 'productDetail']);
+
+// Route Cart
 Route::get('/add-to-cart', [App\Http\Controllers\CartController::class, 'addCart']);
 Route::post('cart/store', [App\Http\Controllers\CartController::class, 'storeCart'])->name('cart.store');
 Route::get('cart', [App\Http\Controllers\CartController::class, 'cart']);
 Route::get('update-cart', [App\Http\Controllers\CartController::class, 'updateCart'])->name('cart.update');
 Route::delete('delete-cart', [App\Http\Controllers\CartController::class, 'deleteCart'])->name('cart.delete');
 Route::get('checkout', [App\Http\Controllers\CartController::class, 'checkout']);
+
+// Route Checkout
+Route::resource('orders', App\Http\Controllers\OrderController::class);
+
+//Route paypal
+Route::get('paypal/checkout/{order}', [App\Http\Controllers\PaypalController::class, 'getExpressCheckout'])->name('paypal.checkout');
+Route::get('paypal/checkout-success/{order}', [App\Http\Controllers\PaypalController::class, 'getExpressCheckoutSuccess'])->name('paypal.success');
+Route::get('paypal/checkout-cancel', [App\Http\Controllers\PaypalController::class, 'cancelPage'])->name('paypal.cancel');

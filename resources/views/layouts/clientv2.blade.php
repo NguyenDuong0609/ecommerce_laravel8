@@ -33,6 +33,11 @@
         <!-- header start -->
         @include('partials.header_v1')
         <!-- header end -->
+        @if(session()->has('message'))
+        <div class="alert alert-success" role="alert">
+            {{ session('message') }}
+        </div>
+        @endif
 		@yield('content')
 		@include('partials.footer_v1')
 		<!-- modal -->

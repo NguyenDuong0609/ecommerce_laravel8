@@ -61,9 +61,13 @@
                 </div>
             </div>
         </div>
-        <div class="row">
+            <form action="{{ route('orders.store') }}" method="post">
+                <div class="row">
             <div class="col-lg-6 col-md-12 col-12">
-                <form action="#">
+                    @csrf
+
+                    {{--  @include('_errors')  --}}
+
                     <div class="checkbox-form">
                         <h3>Billing Details</h3>
                         <div class="row">
@@ -84,14 +88,8 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="checkout-form-list">
-                                    <label>First Name <span class="required">*</span></label>
-                                    <input type="text" placeholder="" />
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="checkout-form-list">
-                                    <label>Last Name <span class="required">*</span></label>
-                                    <input type="text" placeholder="" />
+                                    <label>Full Name <span class="required">*</span></label>
+                                    <input type="text" name="shipping_fullname" placeholder="" />
                                 </div>
                             </div>
                             <div class="col-md-12">
@@ -103,7 +101,7 @@
                             <div class="col-md-12">
                                 <div class="checkout-form-list">
                                     <label>Address <span class="required">*</span></label>
-                                    <input type="text" placeholder="Street address" />
+                                    <input type="text" name="shipping_address" placeholder="Street address" />
                                 </div>
                             </div>
                             <div class="col-md-12">
@@ -114,19 +112,19 @@
                             <div class="col-md-12">
                                 <div class="checkout-form-list">
                                     <label>Town / City <span class="required">*</span></label>
-                                    <input type="text" />
+                                    <input type="text" name="shipping_city" />
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="checkout-form-list">
                                     <label>State / County <span class="required">*</span></label>
-                                    <input type="text" placeholder="" />
+                                    <input type="text" name="shipping_state" placeholder="" />
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="checkout-form-list">
                                     <label>Postcode / Zip <span class="required">*</span></label>
-                                    <input type="text" />
+                                    <input type="number" name="shipping_zipcode" />
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -138,7 +136,7 @@
                             <div class="col-md-6">
                                 <div class="checkout-form-list">
                                     <label>Phone  <span class="required">*</span></label>
-                                    <input type="text" />
+                                    <input type="text" name="shipping_phone" />
                                 </div>
                             </div>
                             <div class="col-md-12">
@@ -244,7 +242,6 @@
                             </div>
                         </div>
                     </div>
-                </form>
             </div>
             <div class="col-lg-6 col-md-12 col-12">
                 <div class="your-order">
@@ -324,6 +321,7 @@
                 </div>
             </div>
         </div>
+        </form>
     </div>
 </div>
 <!-- checkout-area end -->
