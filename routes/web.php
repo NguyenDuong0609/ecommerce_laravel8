@@ -38,6 +38,7 @@ Route::get('cart', [App\Http\Controllers\CartController::class, 'cart']);
 Route::get('update-cart', [App\Http\Controllers\CartController::class, 'updateCart'])->name('cart.update');
 Route::delete('delete-cart', [App\Http\Controllers\CartController::class, 'deleteCart'])->name('cart.delete');
 Route::get('checkout', [App\Http\Controllers\CartController::class, 'checkout']);
+Route::post('coupon',  [App\Http\Controllers\CartController::class, 'applyCoupon'])->name('cart.coupon');
 
 // Route Checkout
 Route::resource('orders', App\Http\Controllers\OrderController::class);

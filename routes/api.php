@@ -91,3 +91,16 @@ Route::prefix('/type_product')->group(function() {
         Route::delete('/{id}', [\App\Http\Controllers\api\v1\TypeProductController::class, 'destroy']);
     });
 });
+
+// Coupon
+Route::prefix('/coupon')->group(function() {
+    Route::group([
+        'middleware' => 'auth:api'
+    ], function() {
+        Route::get('/', [\App\Http\Controllers\api\v1\CouponController::class, 'coupons']);
+        Route::get('/{id}', [\App\Http\Controllers\api\v1\CouponController::class, 'coupon']);
+        Route::post('/add', [\App\Http\Controllers\api\v1\CouponController::class, 'create']);
+        Route::put('/{id}', [\App\Http\Controllers\api\v1\CouponController::class, 'update']);
+        Route::delete('/{id}', [\App\Http\Controllers\api\v1\CouponController::class, 'destroy']);
+    });
+});

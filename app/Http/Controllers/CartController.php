@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Cart;
+use App\Models\Coupon;
 
 class CartController extends Controller
 {
@@ -19,8 +20,29 @@ class CartController extends Controller
 
     public function cart()
     {
-        // dd(Cart::content());
         return view('cart');
+    }
+
+    public function applyCoupon()
+    {
+        $couponCode = request('coupon_code');
+        $couponCode = Coupon::where('code', $couponCode)->first();
+
+        if(!$couponCode) {
+            //return redirect()->back()->with('message', 'Sorry! Coupon does not exist');
+            return response()->json([
+                'status' => 500,
+                'errors' => 'Sorry! Coupon does not exist',
+            ]);
+        }
+
+        Cart::setGlobalDiscount($couponCode->value);
+
+        //return redirect()->back()->with('message', 'coupon applied');
+        return response()->json([
+            'status' => 200,
+            'data' => 'coupon applied',
+        ]);
     }
 
     public function updateCart(Request $request)

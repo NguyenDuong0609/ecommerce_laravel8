@@ -12,6 +12,7 @@
         </div>
     </div>
     <!-- shopping-cart-area start -->
+    <div id="statusCoupon"></div>
     <div class="cart-main-area pt-95 pb-100">
         <div class="container">
             <div class="row">
@@ -39,7 +40,7 @@
                                         <td class="product-quantity">
                                             <input value="{{ $row->qty }}" name="qty[]" type="number">
                                         </td>
-                                        <td class="product-subtotal">${{ $row->total }}</td>
+                                        <td class="product-subtotal">${{ $row->qty * $row->price }}</td>
                                     </tr>
                                     @endforeach
                                 </tbody>
@@ -49,10 +50,10 @@
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <div class="coupon-all">
                                     <div class="coupon">
-                                        <input id="coupon_code" class="input-text" name="coupon_code" value=""
+                                            <input id="coupon_code" class="input-text" name="coupon_code" value=""
                                             placeholder="Coupon code" type="text">
-                                        <input class="button" name="apply_coupon" value="Apply coupon"
-                                            type="submit">
+                                            <input class="button" id="apply_coupon" name="apply_coupon" value="Apply coupon"
+                                                type="button">
                                     </div>
                                     <div class="coupon2">
                                         <input class="button" name="update_cart" value="Update cart" type="submit">
@@ -65,7 +66,8 @@
                                 <div class="cart-page-total">
                                     <h2>Cart totals</h2>
                                     <ul>
-                                        <li>Subtotal<span>{{ Cart::subtotal() }}</span></li>
+                                        <li>Discount<span>- {{ Cart::discount() }}</span></li>
+                                        <li>Tax<span>{{ Cart::tax() }}</span></li>
                                         <li>Total<span>{{ Cart::total() }}</span></li>
                                     </ul>
                                     <a href="#">Proceed to checkout</a>
@@ -99,6 +101,28 @@
                     window.location.reload();
                 }
             })
-        })
+        });
+
+        $(document).on('click', '#apply_coupon', function(e) {
+            e.preventDefault();
+            var coupon_code =  $('input[name = coupon_code]').val();
+            var path = "{{ route('cart.coupon') }}";
+
+            $.ajax({
+                url: path,
+                type: "POST",
+                dataType: "JSON",
+                data: {
+                    coupon_code: coupon_code,
+                },
+                success: function(data) {
+                    if(data['status'] == 500) {
+                        $("#statusCoupon").html(' <div class=\"alert alert-success\" role=\"alert\" style=\"text-align: center\">'+ data['errors']+'</div>');
+                    } else {
+                        $("#statusCoupon").html(' <div class=\"alert alert-success\" role=\"alert\" style=\"text-align: center\">'+ data['data']+'</div>');
+                    }
+                }
+            })
+        });
      </script>
 @stop

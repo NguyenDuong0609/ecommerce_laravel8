@@ -105,6 +105,16 @@
                     <p>Type Product</p>
                 </router-link>
             </li>
+            <li class="nav-item">
+                <router-link
+                    class="nav-link"
+                    :class="[{active: $route.name === 'coupon'}]"
+                    :to="{name: 'coupon'}"
+                >
+                    <i class="fas fa-money-bill-alt"></i>
+                    <p>Coupon</p>
+                </router-link>
+            </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

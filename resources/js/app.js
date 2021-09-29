@@ -24,6 +24,7 @@ import User from './pages/User';
 import Category from './pages/Category';
 import ListProduct from './pages/product/list';
 import CreateProduct from './pages/product/create';
+import Coupon from './pages/Coupon';
 
 const routes = [
     {
@@ -64,6 +65,11 @@ const routes = [
         path: '/admin/product/:idProduct',
         component: CreateProduct,
         name: 'getproduct',
+    },
+    {
+        path: '/admin/coupon',
+        component: Coupon,
+        name: 'coupon',
     }
 ];
 
