@@ -115,6 +115,16 @@
                     <p>Coupon</p>
                 </router-link>
             </li>
+            <li class="nav-item">
+                <router-link
+                    class="nav-link"
+                    :class="[{active: $route.name === 'customer'}]"
+                    :to="{name: 'customer'}"
+                >
+                    <i class="fas fa-male"></i>
+                    <p>Customer</p>
+                </router-link>
+            </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

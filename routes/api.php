@@ -104,3 +104,15 @@ Route::prefix('/coupon')->group(function() {
         Route::delete('/{id}', [\App\Http\Controllers\api\v1\CouponController::class, 'destroy']);
     });
 });
+
+// Customer
+Route::prefix('/customer')->group(function() {
+    Route::group([
+        'middleware' => 'auth:api'
+    ], function() {
+        Route::get('/', [\App\Http\Controllers\api\v1\CustomerController::class, 'customers']);
+        Route::get('/{id}', [\App\Http\Controllers\api\v1\CustomerController::class, 'customer']);
+        Route::put('/{id}', [\App\Http\Controllers\api\v1\CustomerController::class, 'update']);
+        Route::delete('/{id}', [\App\Http\Controllers\api\v1\CustomerController::class, 'destroy']);
+    });
+});

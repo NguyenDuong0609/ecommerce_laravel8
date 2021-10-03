@@ -25,6 +25,7 @@ import Category from './pages/Category';
 import ListProduct from './pages/product/list';
 import CreateProduct from './pages/product/create';
 import Coupon from './pages/Coupon';
+import Customer from './pages/Customer';
 
 const routes = [
     {
@@ -70,6 +71,11 @@ const routes = [
         path: '/admin/coupon',
         component: Coupon,
         name: 'coupon',
+    },
+    {
+        path: '/admin/customer',
+        component: Customer,
+        name: 'customer',
     }
 ];
 

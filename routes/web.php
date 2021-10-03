@@ -47,3 +47,7 @@ Route::resource('orders', App\Http\Controllers\OrderController::class);
 Route::get('paypal/checkout/{order}', [App\Http\Controllers\PaypalController::class, 'getExpressCheckout'])->name('paypal.checkout');
 Route::get('paypal/checkout-success/{order}', [App\Http\Controllers\PaypalController::class, 'getExpressCheckoutSuccess'])->name('paypal.success');
 Route::get('paypal/checkout-cancel', [App\Http\Controllers\PaypalController::class, 'cancelPage'])->name('paypal.cancel');
+
+// Route Social
+Route::get('auth/google', [App\Http\Controllers\Auth\LoginController::class, 'redirectToGoogle'])->name('login.google');
+Route::get('auth/google/callback', [App\Http\Controllers\Auth\LoginController::class, 'handleGoogleCallBack']);

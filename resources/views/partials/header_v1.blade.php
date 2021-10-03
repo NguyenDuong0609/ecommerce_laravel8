@@ -196,8 +196,28 @@
             <div class="furniture-bottom-wrapper">
                 <div class="furniture-login">
                     <ul>
-                        <li>Get Access: <a href="login.html">Login </a></li>
-                        <li><a href="register.html">Reg </a></li>
+                        @if(Cache::get('customer'))
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    <img src="{{ Cache::get('customer')->avatar }}" width="50"/> <span>{{ Cache::get('customer')->name }}</span>
+                                </a>
+
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
+                                </div>
+                            </li>
+                        @else
+                            <li>Get Access: <a href="{{ url('/login') }}">Login </a></li>
+                            <li><a href="register.html">Reg </a></li>
+                        @endif
                     </ul>
                 </div>
                 <div class="furniture-search">
