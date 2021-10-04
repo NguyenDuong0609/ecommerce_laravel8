@@ -211,7 +211,8 @@
                    _token: token,
                },
                success: function(data) {
-                    $("#test").text(data["cartCount"]);
+                    // $("#test").text(data["cartCount"]);
+                   location.reload();
                }
            })
        })

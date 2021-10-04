@@ -70,7 +70,7 @@
                                         <li>Tax<span>{{ Cart::tax() }}</span></li>
                                         <li>Total<span>{{ Cart::total() }}</span></li>
                                     </ul>
-                                    <a href="#">Proceed to checkout</a>
+                                    <a href="{{ url('/checkout')}}">Proceed to checkout</a>
                                 </div>
                             </div>
                         </div>
