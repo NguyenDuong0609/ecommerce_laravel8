@@ -189,7 +189,7 @@ export default {
   methods: {
     getCoupons: function () {
       axios
-        .get("https://ecommerce.test/api/coupon/")
+        .get(process.env.MIX_SENTRY_DSN_PUBLIC + "/api/coupon/")
         .then((res) => {
           this.coupons = res.data.data;
         })
@@ -203,7 +203,7 @@ export default {
       } else {
         console.log(id);
         axios
-          .get("https://ecommerce.test/api/coupon/" + id)
+          .get(process.env.MIX_SENTRY_DSN_PUBLIC + "/api/coupon/" + id)
           .then((res) => {
             this.coupon_id = res.data.data[0].id;
             this.name = res.data.data[0].name;
@@ -218,7 +218,7 @@ export default {
     },
     update: function () {
       axios
-        .put("https://ecommerce.test/api/coupon/" + this.coupon_id, {
+        .put(process.env.MIX_SENTRY_DSN_PUBLIC + "/api/coupon/" + this.coupon_id, {
           name: this.name,
           code: this.code,
           type: this.type,
@@ -228,7 +228,7 @@ export default {
           if (!res.data.error) {
             $("#modal-default").css("display", "none");
             $("div").removeClass("modal-backdrop fade show");
-            toastr.success("User updatr successfully");
+            toastr.success("Coupon update successfully");
             this.parentSelected = "";
             this.name = "";
             this.code = "";
@@ -244,7 +244,7 @@ export default {
     add: function (e) {
       console.log(this.slug);
       axios
-        .post("https://ecommerce.test/api/coupon/add", {
+        .post(process.env.MIX_SENTRY_DSN_PUBLIC + "/api/coupon/add", {
           name: this.name,
           code: this.code,
           type: this.type,
@@ -254,7 +254,7 @@ export default {
           if (!res.data.errors) {
             $("#modal-default").css("display", "none");
             $("div").removeClass("modal-backdrop fade show");
-            toastr.success("User add successfully");
+            toastr.success("Coupon add successfully");
             this.getCoupons();
           } else {
             toastr.error("Please fill in form");
@@ -274,12 +274,12 @@ export default {
     },
     deleteCoupon: function () {
       axios
-        .delete("https://ecommerce.test/api/coupon/" + this.coupon_id)
+        .delete(process.env.MIX_SENTRY_DSN_PUBLIC + "/api/coupon/" + this.coupon_id)
         .then((res) => {
           if (!res.data.errors) {
             $("#modal-sm").css("display", "none");
             $("div").removeClass("modal-backdrop fade show");
-            toastr.success("User updatr successfully");
+            toastr.success("Coupon delete successfully");
             this.name = "";
             this.code = "";
             this.type = "";

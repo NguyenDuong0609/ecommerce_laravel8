@@ -70,6 +70,8 @@ class PayPalController extends Controller
             if(in_array($status, ['Completed', 'Processed'])) {
                 $order = Order::find($orderId);
                 $order->is_paid = 1;
+                $order->status = $status;
+
                 $order->save();
 
                 // send mail

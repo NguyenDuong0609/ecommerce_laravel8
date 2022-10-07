@@ -7,7 +7,7 @@
 require('./bootstrap');
 
 window.Vue = require('vue').default;
-
+import router from './router';
 import VueRouter from 'vue-router';
 import store from './store/index';
 
@@ -27,62 +27,62 @@ import CreateProduct from './pages/product/create';
 import Coupon from './pages/Coupon';
 import Customer from './pages/Customer';
 
-const routes = [
-    {
-        path: '/admin',
-        component: DashBoard
-    },
-    {
-        path: '/admin/producer',
-        component: Producer,
-        name: 'producer',
-    },
-    {
-        path: '/admin/type-product',
-        component: TypeProduct,
-        name: 'typeProduct',
-    },
-    {
-        path: '/admin/user',
-        component: User,
-        name: 'user',
-    },
-    {
-        path: '/admin/category',
-        component: Category,
-        name: 'category',
-    },
-    {
-        path: '/admin/product',
-        component: ListProduct,
-        name: 'product',
-    },
-    {
-        path: '/admin/product/add',
-        component: CreateProduct,
-        name: 'createproduct',
-    },
-    {
-        path: '/admin/product/:idProduct',
-        component: CreateProduct,
-        name: 'getproduct',
-    },
-    {
-        path: '/admin/coupon',
-        component: Coupon,
-        name: 'coupon',
-    },
-    {
-        path: '/admin/customer',
-        component: Customer,
-        name: 'customer',
-    }
-];
+// const routes = [
+//     {
+//         path: '/admin',
+//         component: DashBoard
+//     },
+//     {
+//         path: '/admin/producer',
+//         component: Producer,
+//         name: 'producer',
+//     },
+//     {
+//         path: '/admin/type-product',
+//         component: TypeProduct,
+//         name: 'typeProduct',
+//     },
+//     {
+//         path: '/admin/user',
+//         component: User,
+//         name: 'user',
+//     },
+//     {
+//         path: '/admin/category',
+//         component: Category,
+//         name: 'category',
+//     },
+//     {
+//         path: '/admin/product',
+//         component: ListProduct,
+//         name: 'product',
+//     },
+//     {
+//         path: '/admin/product/add',
+//         component: CreateProduct,
+//         name: 'createproduct',
+//     },
+//     {
+//         path: '/admin/product/:idProduct',
+//         component: CreateProduct,
+//         name: 'getproduct',
+//     },
+//     {
+//         path: '/admin/coupon',
+//         component: Coupon,
+//         name: 'coupon',
+//     },
+//     {
+//         path: '/admin/customer',
+//         component: Customer,
+//         name: 'customer',
+//     }
+// ];
 
-const router = new VueRouter({
-    mode: 'history',
-    routes
-})
+// const router = new VueRouter({
+//     mode: 'history',
+//     routes
+// })
 
 const app = new Vue({
     el: '#app',

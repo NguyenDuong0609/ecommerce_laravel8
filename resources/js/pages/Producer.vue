@@ -203,7 +203,7 @@ export default {
   methods: {
     getProducers: function () {
       axios
-        .get("https://ecommerce.test/api/producer")
+        .get(process.env.MIX_SENTRY_DSN_PUBLIC + "/api/producer")
         .then((res) => {
           this.producers = res.data.data;
         })
@@ -216,7 +216,7 @@ export default {
         (this.title = title), (this.name = ""), (this.slug = ""), (this.address = "");
       } else {
         axios
-          .get("https://ecommerce.test/api/producer/" + id)
+          .get(process.env.MIX_SENTRY_DSN_PUBLIC + "/api/producer/" + id)
           .then((res) => {
             this.producer_id = res.data.data[0].id;
             this.name = res.data.data[0].name;
@@ -229,7 +229,7 @@ export default {
     },
     update: function () {
       axios
-        .put("https://ecommerce.test/api/producer/" + this.producer_id, {
+        .put(process.env.MIX_SENTRY_DSN_PUBLIC + "/api/producer/" + this.producer_id, {
           name: this.name,
           slug: this.slug,
           address: this.address,
@@ -238,7 +238,7 @@ export default {
           if (!res.data.errors) {
             $("#modal-default").css("display", "none");
             $("div").removeClass("modal-backdrop fade show");
-            toastr.success("User updatr successfully");
+            toastr.success("Producer update successfully");
             this.address = "";
             this.name = "";
             this.slug = "";
@@ -249,7 +249,7 @@ export default {
     },
     add: function (e) {
       axios
-        .post("https://ecommerce.test/api/producer/add", {
+        .post(process.env.MIX_SENTRY_DSN_PUBLIC + "/api/producer/add", {
           name: this.name,
           address: this.address,
           slug: this.slug,
@@ -258,7 +258,7 @@ export default {
           if (!res.data.errors) {
             $("#modal-default").css("display", "none");
             $("div").removeClass("modal-backdrop fade show");
-            toastr.success("User add successfully");
+            toastr.success("Producer add successfully");
             this.getProducers();
           } else {
             toastr.error("Please fill in form");
@@ -278,12 +278,12 @@ export default {
     },
     deleteProducer: function () {
       axios
-        .delete("https://ecommerce.test/api/producer/" + this.producer_id)
+        .delete(process.env.MIX_SENTRY_DSN_PUBLIC + "/api/producer/" + this.producer_id)
         .then((res) => {
           if (!res.data.errors) {
             $("#modal-sm").css("display", "none");
             $("div").removeClass("modal-backdrop fade show");
-            toastr.success("Producer updatr successfully");
+            toastr.success("Producer delete successfully");
             this.name = "";
             this.slug = "";
             this.address = "";

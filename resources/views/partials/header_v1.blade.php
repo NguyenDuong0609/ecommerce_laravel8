@@ -133,7 +133,7 @@
             </div>
         </div>
     </div>
-    <div class="header-bottom-furniture wrapper-padding-2 border-top-3">
+    {{--  <div class="header-bottom-furniture wrapper-padding-2 border-top-3">
         <div class="container-fluid">
             <div class="furniture-bottom-wrapper">
                 <div class="furniture-login">
@@ -172,5 +172,5 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>  --}}
 </header>

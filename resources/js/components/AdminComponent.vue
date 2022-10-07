@@ -4,7 +4,7 @@
     <div class="preloader flex-column justify-content-center align-items-center">
       <img
         class="animation__shake"
-        src="dist/img/AdminLTELogo.png"
+        :src="`${publicPath}/dist/img/AdminLTELogo.png`"
         alt="AdminLTELogo"
         height="60"
         width="60"
@@ -36,10 +36,15 @@ import Footer from "./_footer";
 import Sidebar from "./_sidebar";
 export default {
   components: { Navbar, Footer, Sidebar },
-  mounted() {
-    if((localStorage.getItem('authenticate') == false) || !(localStorage.getItem('authenticate'))) {
-         window.location.href='/admin/login';
+  data() {
+    return {
+      publicPath: process.env.MIX_SENTRY_DSN_PUBLIC
     }
+  },
+  mounted() {
+    // if((localStorage.getItem('authenticate') == false) || !(localStorage.getItem('authenticate'))) {
+    //      window.location.href='/admin/login';
+    // }
     // console.log(localStorage.getItem('authenticate'));
   },
 

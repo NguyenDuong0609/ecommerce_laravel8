@@ -41,11 +41,11 @@
                         <h3 class="footer-widget-title-3">My Account</h3>
                         <div class="footer-widget-content-3">
                             <ul>
-                                <li><a href="login.html">Login Hare</a></li>
-                                <li><a href="cart.html">Cart History</a></li>
-                                <li><a href="checkout.html"> Payment History</a></li>
-                                <li><a href="shop.html">Product Tracking</a></li>
-                                <li><a href="register.html">Register</a></li>
+                                <li><a href="#">Login Hare</a></li>
+                                <li><a href="#">Cart History</a></li>
+                                <li><a href="#"> Payment History</a></li>
+                                <li><a href="#">Product Tracking</a></li>
+                                <li><a href="#">Register</a></li>
                             </ul>
                         </div>
                     </div>
@@ -55,7 +55,7 @@
                         <h3 class="footer-widget-title-3">Information</h3>
                         <div class="footer-widget-content-3">
                             <ul>
-                                <li><a href="about-us.html">About Us</a></li>
+                                <li><a href="#">About Us</a></li>
                                 <li><a href="#">Our Service</a></li>
                                 <li><a href="#">Pricing Plan</a></li>
                                 <li><a href="#"> Vendor Detail</a></li>
@@ -128,7 +128,7 @@
                         <nav>
                             <ul>
                                 <li><a href="#">Privacy Policy </a></li>
-                                <li><a href="blog.html"> Blog</a></li>
+                                <li><a href="#"> Blog</a></li>
                                 <li><a href="#">Help Center</a></li>
                             </ul>
                         </nav>

@@ -1,12 +1,12 @@
 @extends('layouts.clientv2')
 @section('content')
-    <div class="breadcrumb-area pt-205 pb-210" style="background-image: url(../ezone/assets/img/bg/Samsung-sgalaxy-note-9-banner-web.jpg)">
+    <div class="breadcrumb-area pt-205 pb-210" style="background-image: url(../ezone/assets/img/bg/iphone.jpg)">
         <div class="container">
             <div class="breadcrumb-content text-center">
-                <h2 style="color: black;">product details</h2>
+                <h2 style="color: white;">product details</h2>
                 <ul>
-                    <li><a href="#" style="color: black;">home /</a></li>
-                    <li><a href="{{ url('/') }}/category/{{ $productDetail[0]->category_id }}" style="color: black;">{{ $breadcrumb['category'] }} /</a></li>
+                    <li><a href="{{ url('/')}}" style="color: white;">home </a></li>
+                    <li><a href="{{ url('/') }}/category/{{ $productDetail[0]->category_id }}" style="color: white;">{{ $breadcrumb['category'] }} </a></li>
                     <li style="color: black;">{{ $breadcrumb['product'] }}</li>
                 </ul>
             </div>
@@ -20,25 +20,35 @@
                         <div class="product-details-tab mr-70">
                             <div class="product-details-large tab-content">
                                 <?php $images = explode(",", $productDetail[0]->images) ?>
-                                @for ($i=1; $i< count($images); $i++)
-                                    @if($i == 1)
-                                    <div class="tab-pane active show fade" id="pro-details{{ $i }}" role="tabpanel">
+                                @if (count($images) > 1)
+                                    @for ($i=1; $i< count($images); $i++)
+                                        @if($i == 1)
+                                        <div class="tab-pane active show fade" id="pro-details{{ $i }}" role="tabpanel">
+                                            <div class="easyzoom easyzoom--overlay">
+                                                <a href="../images/{{ $images[$i] }}">
+                                                    <img src="../images/{{ $images[$i] }}" alt="">
+                                                </a>
+                                            </div>
+                                        </div>
+                                        @else
+                                        <div class="tab-pane fade" id="pro-details{{ $i }}" role="tabpanel">
+                                            <div class="easyzoom easyzoom--overlay">
+                                                <a href=".../images/{{ $images[$i] }}">
+                                                    <img src="../images/{{ $images[$i] }}" alt="">
+                                                </a>
+                                            </div>
+                                        </div>
+                                        @endif
+                                    @endfor
+                                @else
+                                    <div class="tab-pane active show fade" id="pro-details1" role="tabpanel">
                                         <div class="easyzoom easyzoom--overlay">
-                                            <a href="../images/{{ $images[$i] }}">
-                                                <img src="../images/{{ $images[$i] }}" alt="">
+                                            <a href="../images/{{ $images[0] }}">
+                                                <img src="../images/{{ $images[0] }}" alt="">
                                             </a>
                                         </div>
                                     </div>
-                                    @else
-                                    <div class="tab-pane fade" id="pro-details{{ $i }}" role="tabpanel">
-                                        <div class="easyzoom easyzoom--overlay">
-                                            <a href=".../images/{{ $images[$i] }}">
-                                                <img src="../images/{{ $images[$i] }}" alt="">
-                                            </a>
-                                        </div>
-                                    </div>
-                                    @endif
-                                @endfor
+                                @endif
                             </div>
                             <div class="product-details-small nav mt-12" role=tablist>
                                 @for ($i=1; $i< count($images); $i++)
@@ -84,7 +94,7 @@
 
                         <div class="quickview-plus-minus">
                             <div class="cart-plus-minus">
-                                <input type="text" value="02" name="qtybutton" class="cart-plus-minus-box">
+                                <input type="text" value="01" name="qtybutton" class="cart-plus-minus-box">
                             </div>
 
                             <div class="quickview-btn-cart">
@@ -139,20 +149,15 @@
                     <div class="product-wrapper">
                         <div class="product-img">
                             <a href="{{ url('/') }}/product/{{ $product->id }}">
-                                <img src="../images/<?php echo explode(",", $product->images)[1] ?>" alt="">
+                                {{--  <img src="../images/<?php echo explode(",", $product->images)[1] ?>" alt="">  --}}
+                                <img src="../images/<?php echo $product->images ?>" alt="">
                             </a>
                             <span>hot</span>
                             <div class="product-action">
                                 <a class="animate-left" title="Wishlist" href="#">
                                     <i class="pe-7s-like"></i>
                                 </a>
-                                <a class="animate-top" title="Add To Cart" href="#">
-                                    <i class="pe-7s-cart"></i>
-                                </a>
-                                <a class="animate-right" title="Quick View" data-toggle="modal" data-target="#exampleModal"
-                                    href="#">
-                                    <i class="pe-7s-look"></i>
-                                </a>
+                                <a href="javascript:void(0)" class="animate-top" title="Add To Cart" data-quantity="1" data-product-id="{{ $product->id }}" data-price="{{ $product->price }}" data-name="{{ $product->title }}"><i class="pe-7s-cart"></i></a>
                             </div>
                         </div>
                         <div class="product-content">
@@ -215,6 +220,36 @@
                    location.reload();
                }
            })
-       })
+       });
+
+       $(document).on('click', '.animate-top', function(e) {
+        e.preventDefault();
+        var product_id = $(this).data('product-id');
+        var product_qty = $(this).data('quantity');
+        var product_price = $(this).data('price');
+        var product_name = $(this).data('name');
+        var image = $(this).data('image');
+
+        var token = "{{ csrf_token() }}";
+        var path = "{{ route('cart.store') }}";
+
+        $.ajax({
+            url: path,
+            type: "POST",
+            dataType: "JSON",
+            data: {
+                product_id: product_id,
+                product_qty: product_qty,
+                product_price: product_price,
+                product_name: product_name,
+                image: image,
+                _token: token,
+            },
+            success: function(data) {
+                 // $("#test").text(data["cartCount"]);
+                location.reload();
+            }
+        })
+    });
     </script>
 @stop

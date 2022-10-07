@@ -35,6 +35,13 @@
                           width="70"
                           height="70"
                           v-bind:src="'/images/' + product.images.split(',')[1]"
+                          v-if="product.images.includes(',')"
+                        />{{ product.id }}
+                        <img
+                          width="70"
+                          height="70"
+                          v-bind:src="'/images/' + product.images"
+                          v-if="product.images.includes(',') == false"
                         />{{ product.id }}
                       </td>
                       <td>{{ product.title }}</td>
@@ -181,10 +188,11 @@ export default {
   },
   methods: {
     getProducts: function (pagi) {
-      pagi = pagi || "https://ecommerce.test/api/product/";
+      pagi = pagi || process.env.MIX_SENTRY_DSN_PUBLIC + "/api/product/";
       axios
         .get(pagi)
         .then((res) => {
+          console.log(res);
           this.products = res.data.data.data;
           this.pagination = {
             current_page: res.data.data.current_page,
@@ -206,13 +214,13 @@ export default {
     },
     deleteProduct: function () {
       axios
-        .delete("https://ecommerce.test/api/product/" + this.idProduct)
+        .delete(process.env.MIX_SENTRY_DSN_PUBLIC + "/api/product/" + this.idProduct)
         .then((res) => {
           console.log(res);
           if (!res.data.errors) {
             $("#modal-sm").css("display", "none");
             $("div").removeClass("modal-backdrop fade show");
-            toastr.success("User updatr successfully");
+            toastr.success("Delete product successfully");
             this.name = "";
             this.slug = "";
             this.getProducts();
@@ -221,6 +229,9 @@ export default {
           }
         })
         .catch((error) => console.log(error));
+      // $("#modal-sm").css("display", "none");
+      // $("div").removeClass("modal-backdrop fade show");
+      // this.getProducts();
     },
   },
 };

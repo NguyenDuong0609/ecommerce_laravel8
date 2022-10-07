@@ -1,13 +1,15 @@
 @extends('layouts.clientv2')
 @section('content')
     <div class="breadcrumb-area pt-205 pb-210"
-        style="background-image: url(../ezone/assets/img/bg/Samsung-sgalaxy-note-9-banner-web.jpg)">
+        style="background-image: url(../ezone/assets/img/bg/iphone.jpg)">
         <div class="container">
             <div class="breadcrumb-content text-center">
-                <h2 style="color: black;">Category</h2>
+                <h2 style="color: white;">Category</h2>
                 <ul>
-                    <li style="color: black;"><a href="#">home</a></li>
-                    <li style="color: black;">{{ $breadcrumb[0]->name }}</li>
+                    <li style="color: white;"><a href="{{ url('/')}}">home</a></li>
+                    @if($breadcrumb != null)
+                        <li style="color: black;">{{ $breadcrumb[0]->name }}</li>
+                    @endif
                 </ul>
             </div>
         </div>
@@ -21,22 +23,9 @@
                             <h3 class="sidebar-title">Search Products</h3>
                             <div class="sidebar-search">
                                 <form action="#">
-                                    <input placeholder="Search Products..." type="text">
+                                    <input id="search" placeholder="Search Products..." type="text">
                                     <button><i class="ti-search"></i></button>
                                 </form>
-                            </div>
-                        </div>
-                        <div class="sidebar-widget mb-40">
-                            <h3 class="sidebar-title">Filter by Price</h3>
-                            <div class="price_filter">
-                                <div id="slider-range"></div>
-                                <div class="price_slider_amount">
-                                    <div class="label-input">
-                                        <label>price : </label>
-                                        <input type="text" id="amount" name="price" placeholder="Add Your Price" />
-                                    </div>
-                                    <button type="button">Filter</button>
-                                </div>
                             </div>
                         </div>
                         <div class="sidebar-widget mb-45">
@@ -56,90 +45,28 @@
                         <div class="sidebar-widget mb-50">
                             <h3 class="sidebar-title">Top rated products</h3>
                             <div class="sidebar-top-rated-all">
-                                <div class="sidebar-top-rated mb-30">
-                                    <div class="single-top-rated">
-                                        <div class="top-rated-img">
-                                            <a href="#"><img src="../ezone/assets/img/product/sidebar-product/1.jpg"
-                                                    alt=""></a>
-                                        </div>
-                                        <div class="top-rated-text">
-                                            <h4><a href="#">Flying Drone</a></h4>
-                                            <div class="top-rated-rating">
-                                                <ul>
-                                                    <li><i class="pe-7s-star"></i></li>
-                                                    <li><i class="pe-7s-star"></i></li>
-                                                    <li><i class="pe-7s-star"></i></li>
-                                                    <li><i class="pe-7s-star"></i></li>
-                                                    <li><i class="pe-7s-star"></i></li>
-                                                </ul>
+                                @foreach ($topProducts as $product)
+                                    <div class="sidebar-top-rated mb-30">
+                                        <div class="single-top-rated">
+                                            <div class="top-rated-img">
+                                                <a href="{{ url('/') }}/product/{{ $product->id }}"><img src="../images/<?php echo $product->images ?>" alt="" width="91" height="88"></a>
                                             </div>
-                                            <span>$140.00</span>
+                                            <div class="top-rated-text">
+                                                <h4><a href="{{ url('/') }}/product/{{ $product->id }}">{{ $product->title }}</a></h4>
+                                                <div class="top-rated-rating">
+                                                    <ul>
+                                                        <li><i class="pe-7s-star"></i></li>
+                                                        <li><i class="pe-7s-star"></i></li>
+                                                        <li><i class="pe-7s-star"></i></li>
+                                                        <li><i class="pe-7s-star"></i></li>
+                                                        <li><i class="pe-7s-star"></i></li>
+                                                    </ul>
+                                                </div>
+                                                <span>${{ $product->price }}</span>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="sidebar-top-rated mb-30">
-                                    <div class="single-top-rated">
-                                        <div class="top-rated-img">
-                                            <a href="#"><img src="../ezone/assets/img/product/sidebar-product/2.jpg"
-                                                    alt=""></a>
-                                        </div>
-                                        <div class="top-rated-text">
-                                            <h4><a href="#">Flying Drone</a></h4>
-                                            <div class="top-rated-rating">
-                                                <ul>
-                                                    <li><i class="pe-7s-star"></i></li>
-                                                    <li><i class="pe-7s-star"></i></li>
-                                                    <li><i class="pe-7s-star"></i></li>
-                                                    <li><i class="pe-7s-star"></i></li>
-                                                    <li><i class="pe-7s-star"></i></li>
-                                                </ul>
-                                            </div>
-                                            <span>$140.00</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="sidebar-top-rated mb-30">
-                                    <div class="single-top-rated">
-                                        <div class="top-rated-img">
-                                            <a href="#"><img src="../ezone/assets/img/product/sidebar-product/3.jpg"
-                                                    alt=""></a>
-                                        </div>
-                                        <div class="top-rated-text">
-                                            <h4><a href="#">Flying Drone</a></h4>
-                                            <div class="top-rated-rating">
-                                                <ul>
-                                                    <li><i class="pe-7s-star"></i></li>
-                                                    <li><i class="pe-7s-star"></i></li>
-                                                    <li><i class="pe-7s-star"></i></li>
-                                                    <li><i class="pe-7s-star"></i></li>
-                                                    <li><i class="pe-7s-star"></i></li>
-                                                </ul>
-                                            </div>
-                                            <span>$140.00</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="sidebar-top-rated mb-30">
-                                    <div class="single-top-rated">
-                                        <div class="top-rated-img">
-                                            <a href="#"><img src="../ezone/assets/img/product/sidebar-product/4.jpg"
-                                                    alt=""></a>
-                                        </div>
-                                        <div class="top-rated-text">
-                                            <h4><a href="#">Flying Drone</a></h4>
-                                            <div class="top-rated-rating">
-                                                <ul>
-                                                    <li><i class="pe-7s-star"></i></li>
-                                                    <li><i class="pe-7s-star"></i></li>
-                                                    <li><i class="pe-7s-star"></i></li>
-                                                    <li><i class="pe-7s-star"></i></li>
-                                                    <li><i class="pe-7s-star"></i></li>
-                                                </ul>
-                                            </div>
-                                            <span>$140.00</span>
-                                        </div>
-                                    </div>
-                                </div>
+                                @endforeach
                             </div>
                         </div>
                     </div>
@@ -154,11 +81,10 @@
                                     </div>
                                     <div class="shop-selector">
                                         <label>Sort By : </label>
-                                        <select name="select">
-                                            <option value="">Default</option>
-                                            <option value="">A to Z</option>
-                                            <option value=""> Z to A</option>
-                                            <option value="">In stock</option>
+                                        <select name="select" id="sort">
+                                            <option value="">Lọc theo giá</option>
+                                            <option value="ASC">Tăng dần</option>
+                                            <option value="DESC">Giảm dần</option>
                                         </select>
                                     </div>
                                 </div>
@@ -176,13 +102,14 @@
                             </div>
                             <div class="shop-product-content tab-content">
                                 <div id="grid-sidebar7" class="tab-pane fade active show">
-                                    <div class="row">
+                                    <div class="row" id="content-7">
                                         @foreach ($products as $product)
                                         <div class="col-lg-4 col-md-6">
                                             <div class="product-wrapper product-box-style mb-30">
                                                 <div class="product-img">
                                                     <a href="{{ url('/') }}/product/{{ $product->id }}">
-                                                        <img src="../images/<?php echo explode(",", $product->images)[1] ?>"
+                                                        {{--  <img src="../images/<?php echo explode(",", $product->images)[1] ?>"  --}}
+                                                        <img src="../images/<?php echo $product->images ?>"
                                                             alt="">
                                                     </a>
                                                     <span>hot</span>
@@ -190,13 +117,11 @@
                                                         <a class="animate-left" title="Wishlist" href="#">
                                                             <i class="pe-7s-like"></i>
                                                         </a>
-                                                        <a class="animate-top" title="Add To Cart" href="#">
-                                                            <i class="pe-7s-cart"></i>
-                                                        </a>
-                                                        <a class="animate-right" title="Quick View" data-toggle="modal"
+                                                        <a href="javascript:void(0)" class="animate-top" title="Add To Cart" data-quantity="1" data-product-id="{{ $product->id }}" data-price="{{ $product->price }}" data-name="{{ $product->title }}"><i class="pe-7s-cart"></i></a>
+                                                        {{--  <a class="animate-right" title="Quick View" data-toggle="modal"
                                                             data-target="#exampleModal" href="#">
                                                             <i class="pe-7s-look"></i>
-                                                        </a>
+                                                        </a>  --}}
                                                     </div>
                                                 </div>
                                                 <div class="product-content">
@@ -209,23 +134,24 @@
                                     </div>
                                 </div>
                                 <div id="grid-sidebar8" class="tab-pane fade">
-                                    <div class="row">
+                                    <div class="row" id="content-8">
                                         @foreach ($products as $product)
                                         <div class="col-lg-12">
                                             <div
                                                 class="product-wrapper mb-30 single-product-list product-list-right-pr mb-60">
                                                 <div class="product-img list-img-width">
                                                     <a href="{{ url('/') }}/product/{{ $product->id }}">
-                                                        <img src="../images/<?php echo explode(",", $product->images)[1] ?>"
+                                                        {{--  <img src="../images/<?php echo explode(",", $product->images)[1] ?>"  --}}
+                                                        <img src="../images/<?php echo $product->images ?>"
                                                             alt="">
                                                     </a>
                                                     <span>hot</span>
-                                                    <div class="product-action-list-style">
+                                                    {{--  <div class="product-action-list-style">
                                                         <a class="animate-right" title="Quick View" data-toggle="modal"
                                                             data-target="#exampleModal" href="#">
                                                             <i class="pe-7s-look"></i>
                                                         </a>
-                                                    </div>
+                                                    </div>  --}}
                                                 </div>
                                                 <div class="product-content-list">
                                                     <div class="product-list-info">
@@ -235,7 +161,7 @@
                                                     </div>
                                                     <div class="product-list-cart-wishlist">
                                                         <div class="product-list-cart">
-                                                            <a class="btn-hover list-btn-style" href="#">add to cart</a>
+                                                            <a href="javascript:void(0)" class="btn-hover list-btn-style" data-quantity="1" data-product-id="{{ $product->id }}" data-price="{{ $product->price }}" data-name="{{ $product->title }}">add to cart</a>
                                                         </div>
                                                         <div class="product-list-wishlist">
                                                             <a class="btn-hover list-btn-wishlist" href="#">
@@ -255,16 +181,20 @@
 
                     @if($products->hasPages())
                     <div class="pagination-style mt-10 text-center">
-                        <ul>
-                            <li><a href="{{ $products->firstItem() }}"><i class="ti-angle-left"></i></a></li>
-                            @for($i = 1; $i < $products->lastPage(); $i++)
+                        <ul id="content-paginate">
+                            @if($products->currentPage() > 1)
+                                <li><a href="{{ $products->previousPageUrl() }}"><i class="ti-angle-left"></i></a></li>
+                            @endif
+                            @for($i = 1; $i <= $products->lastPage(); $i++)
                                 @if($products->currentPage() == $i)
                                     <li class="active"><a href="{{ $products->url($i) }}">{{ $i }}</a></li>
                                 @else
                                     <li><a href="{{ $products->url($i) }}">{{ $i }}</a></li>
                                 @endif
                             @endfor
-                            <li><a href="{{ $products->nextPageUrl() }}"><i class="ti-angle-right"></i></a></li>
+                            @if ($products->currentPage() < $products->lastPage())
+                                <li><a href="{{ $products->nextPageUrl() }}"><i class="ti-angle-right"></i></a></li>
+                            @endif
                         </ul>
                     </div>
                     @endif
@@ -272,4 +202,107 @@
             </div>
         </div>
     </div>
+
+    <script type="text/javascript">
+        $('#search').on('keyup',function(){
+            $string = window.location.href;
+            $id_cate = $string.substr(-1, $string.length -1);
+            $value = $(this).val();
+            $.ajax({
+                type: 'get',
+                url: '{{ URL::to('/search') }}',
+                data: {
+                    'search': $value,
+                    'idCate': $id_cate
+                },
+                success:function(data){
+                    $('#content-7').html(data[0]);
+                    $('#content-8').html(data[1]);
+                    $('#content-paginate').html(data[2]);
+                }
+            });
+        })
+
+        $('#sort').on('change', function(){
+            $sort = $(this).find(":selected").val();
+            $string = window.location.href;
+            $id_cate = $string.substr(-1, $string.length -1);
+            $value = $(this).val();
+            $.ajax({
+                type: 'get',
+                url: '{{ URL::to('/sort') }}',
+                data: {
+                    'sort': $sort,
+                    'idCate': $id_cate
+                },
+                success:function(data){
+                    $('#content-7').html(data[0]);
+                    $('#content-8').html(data[1]);
+                    $('#content-paginate').html(data[2]);
+                }
+            });
+        });
+
+        $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
+
+        $(document).on('click', '.animate-top', function(e) {
+            e.preventDefault();
+            var product_id = $(this).data('product-id');
+            var product_qty = $(this).data('quantity');
+            var product_price = $(this).data('price');
+            var product_name = $(this).data('name');
+            var image = $(this).data('image');
+ 
+            var token = "{{ csrf_token() }}";
+            var path = "{{ route('cart.store') }}";
+ 
+            $.ajax({
+                url: path,
+                type: "POST",
+                dataType: "JSON",
+                data: {
+                    product_id: product_id,
+                    product_qty: product_qty,
+                    product_price: product_price,
+                    product_name: product_name,
+                    image: image,
+                    _token: token,
+                },
+                success: function(data) {
+                     // $("#test").text(data["cartCount"]);
+                    location.reload();
+                }
+            })
+        });
+
+        $(document).on('click', '.list-btn-style', function(e) {
+            e.preventDefault();
+            var product_id = $(this).data('product-id');
+            var product_qty = $(this).data('quantity');
+            var product_price = $(this).data('price');
+            var product_name = $(this).data('name');
+            var image = $(this).data('image');
+ 
+            var token = "{{ csrf_token() }}";
+            var path = "{{ route('cart.store') }}";
+ 
+            $.ajax({
+                url: path,
+                type: "POST",
+                dataType: "JSON",
+                data: {
+                    product_id: product_id,
+                    product_qty: product_qty,
+                    product_price: product_price,
+                    product_name: product_name,
+                    image: image,
+                    _token: token,
+                },
+                success: function(data) {
+                     // $("#test").text(data["cartCount"]);
+                    location.reload();
+                }
+            })
+        })
+    </script>
 @stop

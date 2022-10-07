@@ -1,5 +1,6 @@
 <footer class="footer-area">
-    <div class="footer-top-area bg-img pt-105 pb-65" style="background-image: url(ezone/assets/img/bg/1.jpg)" data-overlay="9">
+    {{--  <div class="footer-top-area bg-img pt-105 pb-65" style="background-image: url(ezone/assets/img/bg/1.jpg)" data-overlay="9">  --}}
+    <div class="footer-top-area bg-img pt-105 pb-65" data-overlay="9">
         <div class="container">
             <div class="row">
                 <div class="col-xl-4 col-md-3">
@@ -7,10 +8,10 @@
                         <h3 class="footer-widget-title">Custom Service</h3>
                         <div class="footer-widget-content">
                             <ul>
-                                <li><a href="cart.html">Cart</a></li>
-                                <li><a href="register.html">My Account</a></li>
-                                <li><a href="login.html">Login</a></li>
-                                <li><a href="register.html">Register</a></li>
+                                <li><a href="#">Cart</a></li>
+                                <li><a href="#">My Account</a></li>
+                                <li><a href="#">Login</a></li>
+                                <li><a href="#">Register</a></li>
                                 <li><a href="#">Support</a></li>
                                 <li><a href="#">Track</a></li>
                             </ul>
@@ -22,12 +23,12 @@
                         <h3 class="footer-widget-title">Categories</h3>
                         <div class="footer-widget-content">
                             <ul>
-                                <li><a href="shop.html">Dress</a></li>
-                                <li><a href="shop.html">Shoes</a></li>
-                                <li><a href="shop.html">Shirt</a></li>
-                                <li><a href="shop.html">Baby Product</a></li>
-                                <li><a href="shop.html">Mans Product</a></li>
-                                <li><a href="shop.html">Leather</a></li>
+                                <li><a href="#">Dress</a></li>
+                                <li><a href="#">Shoes</a></li>
+                                <li><a href="#">Shirt</a></li>
+                                <li><a href="#">Baby Product</a></li>
+                                <li><a href="#">Mans Product</a></li>
+                                <li><a href="#">Leather</a></li>
                             </ul>
                         </div>
                     </div>
@@ -46,7 +47,7 @@
                                             <input type="text" name="b_6bbb9b6f5827bd842d9640c82_05d85f18ef" tabindex="-1" value="">
                                         </div>
                                         <div class="clear">
-                                            <input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button">
+                                            <input type="button" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button">
                                         </div>
                                     </div>
                                 </form>

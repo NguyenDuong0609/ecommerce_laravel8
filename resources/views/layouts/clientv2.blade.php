@@ -23,15 +23,15 @@
         <link rel="stylesheet" href="../ezone/assets/css/style.css">
         <link rel="stylesheet" href="../ezone/assets/css/responsive.css">
         <script src="../ezone/assets/js/vendor/modernizr-2.8.3.min.js"></script>
-
         <script src="https://code.jquery.com/jquery-3.6.0.js" crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     </head>
     <body>
         <!--[if lt IE 8]>
         <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
         <!-- header start -->
-        @include('partials.header_v1')
+        @include('partials.header_v2')
         <!-- header end -->
         {{-- @if(session()->has('message'))
         <div class="alert alert-success" role="alert">

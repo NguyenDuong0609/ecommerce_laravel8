@@ -188,7 +188,7 @@ export default {
   methods: {
     getTypeProduct: function () {
       axios
-        .get("https://ecommerce.test/api/type_product")
+        .get(process.env.MIX_SENTRY_DSN_PUBLIC + "/api/type_product")
         .then((res) => {
           this.typeProducts = res.data.data;
         })
@@ -201,7 +201,7 @@ export default {
         (this.title = title), (this.name = ""), (this.slug = "");
       } else {
         axios
-          .get("https://ecommerce.test/api/type_product/" + id)
+          .get(process.env.MIX_SENTRY_DSN_PUBLIC + "/api/type_product/" + id)
           .then((res) => {
             this.type_id = res.data.data[0].id;
             this.name = res.data.data[0].name;
@@ -213,7 +213,7 @@ export default {
     },
     update: function () {
       axios
-        .put("https://ecommerce.test/api/type_product/" + this.type_id, {
+        .put(process.env.MIX_SENTRY_DSN_PUBLIC + "/api/type_product/" + this.type_id, {
           name: this.name,
           slug: this.slug,
         })
@@ -221,7 +221,7 @@ export default {
           if (!res.data.errors) {
             $("#modal-default").css("display", "none");
             $("div").removeClass("modal-backdrop fade show");
-            toastr.success("Type Product updatr successfully");
+            toastr.success("Type Product update successfully");
             this.name = "";
             this.slug = "";
             this.getTypeProduct();
@@ -231,7 +231,7 @@ export default {
     },
     add: function (e) {
       axios
-        .post("https://ecommerce.test/api/type_product/add", {
+        .post(process.env.MIX_SENTRY_DSN_PUBLIC + "/api/type_product/add", {
           name: this.name,
           slug: this.slug,
         })
@@ -259,12 +259,12 @@ export default {
     },
     deleteTypeProduct: function () {
       axios
-        .delete("https://ecommerce.test/api/type_product/" + this.type_id)
+        .delete(process.env.MIX_SENTRY_DSN_PUBLIC + "/api/type_product/" + this.type_id)
         .then((res) => {
           if (!res.data.errors) {
             $("#modal-sm").css("display", "none");
             $("div").removeClass("modal-backdrop fade show");
-            toastr.success("Type Product updatr successfully");
+            toastr.success("Type Product delete successfully");
             this.name = "";
             this.slug = "";
             this.getTypeProduct();

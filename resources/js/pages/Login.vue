@@ -70,12 +70,13 @@
         },
         methods: {
             login: function (e) {
+                console.log(process.env.MIX_SENTRY_DSN_PUBLIC);
                 e.preventDefault();
-                axios.post('https://ecommerce.test/api/user/login', { email: this.email, password: this.password})
+                axios.post(process.env.MIX_SENTRY_DSN_PUBLIC + '/api/user/login', { email: this.email, password: this.password})
                     .then((res) => {
                         if(!res.data.errors) {
                             localStorage.setItem('authenticate', true);
-                            window.location.href='/admin';
+                            window.location.href='/admin/product';
                         }else {
                             alert('Please login');
                         }

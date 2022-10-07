@@ -1,12 +1,12 @@
 @extends('layouts.clientv2')
 @section('content')
-<div class="breadcrumb-area pt-205 pb-210" style="background-image: url(../ezone/assets/img/bg/breadcrumb.jpg)">
+<div class="breadcrumb-area pt-205 pb-210" style="background-image: url(../ezone/assets/img/bg/iphone.jpg)">
     <div class="container">
         <div class="breadcrumb-content text-center">
             <h2>checkout</h2>
             <ul>
                 <li><a href="{{ url('') }}">home</a></li>
-                <li> checkout </li>
+                <li style="color: black;">checkout </li>
             </ul>
         </div>
     </div>
@@ -28,6 +28,12 @@
                                 <div class="checkout-form-list">
                                     <label>Full Name <span class="required">*</span></label>
                                     <input type="text" name="shipping_fullname" placeholder="" />
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="checkout-form-list">
+                                    <label>Email <span class="required">*</span></label>
+                                    <input type="email" name="email" placeholder="Email" />
                                 </div>
                             </div>
                             <div class="col-md-12">

@@ -1,42 +1,10 @@
 <header>
-    {{--  <div class="header-top-wrapper-2 border-bottom-2">
-        <div class="header-info-wrapper pl-200 pr-200">
-            <div class="electronics-login-register">
-                <ul>
-                    <li><a href="#"><i class="pe-7s-users"></i>My Account</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>  --}}
     <div class="header-bottom pt-40 pb-30 clearfix">
         <div class="header-bottom-wrapper pr-200 pl-200">
             <div class="logo-3">
                 <a href="{{ url('/')}}">
-                    <img src="ezone/assets/img/logo/logo-3.png" alt="">
+                    <img src="../ezone/assets/img/logo/logo-3.png" alt="">
                 </a>
-            </div>
-            <div class="categories-search-wrapper">
-                {{--  <div class="all-categories">
-                    <div class="select-wrapper">
-                        <select class="select">
-                            <option value="">All Categories</option>
-                            <option value="">Smartphones </option>
-                            <option value="">Computers</option>
-                            <option value="">Laptops </option>
-                            <option value="">Camerea </option>
-                            <option value="">Watches</option>
-                            <option value="">Lights </option>
-                            <option value="">Air conditioner</option>
-                        </select>
-                    </div>
-                </div>  --}}
-                <div class="categories-wrapper">
-                    <form action="{{ url('search')}}" method="GET">
-                        @csrf
-                        <input placeholder="Enter Your key word" type="text" name="search">
-                        <button type="submit"> Search</button>
-                    </form>
-                </div>
             </div>
             <div class="trace-cart-wrapper">
                 <div class="trace same-style">
@@ -54,7 +22,7 @@
                     <nav id="mobile-menu-active">
                         <ul class="menu-overflow">
                             <li><a href="#">HOME</a>
-                                {{--  <ul>
+                                <ul>
                                     <li><a href="index.html">Fashion</a></li>
                                     <li><a href="index-fashion-2.html">Fashion style 2</a></li>
                                     <li><a href="index-fruits.html">Fruits</a></li>
@@ -66,9 +34,9 @@
                                     <li><a href="index-handicraft.html">handicraft</a></li>
                                     <li><a href="index-smart-watch.html">smart watch</a></li>
                                     <li><a href="index-sports.html">sports</a></li>
-                                </ul>  --}}
+                                </ul>
                             </li>
-                            {{--  <li><a href="#">pages</a>
+                            <li><a href="#">pages</a>
                                 <ul>
                                     <li><a href="about-us.html">about us</a></li>
                                     <li><a href="menu-list.html">menu list</a></li>
@@ -108,8 +76,8 @@
                                     <li><a href="blog-details.html">blog details</a></li>
                                     <li><a href="blog-details-sidebar.html">blog details 2</a></li>
                                 </ul>
-                            </li>  --}}
-                            <li><a href="#"> Contact  </a></li>
+                            </li>
+                            <li><a href="contact.html"> Contact  </a></li>
                         </ul>
                     </nav>
                 </div>

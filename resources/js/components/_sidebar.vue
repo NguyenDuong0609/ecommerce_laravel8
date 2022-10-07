@@ -3,7 +3,7 @@
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
       <img
-        src="dist/img/AdminLTELogo.png"
+        :src="`${publicPath}/dist/img/AdminLTELogo.png`"
         alt="AdminLTE Logo"
         class="brand-image img-circle elevation-3"
         style="opacity: 0.8"
@@ -17,7 +17,7 @@
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
           <img
-            src="dist/img/user2-160x160.jpg"
+            :src="`${publicPath}/dist/img/user2-160x160.jpg`"
             class="img-circle elevation-2"
             alt="User Image"
           />
@@ -138,7 +138,7 @@ export default {
   mounted() {
 
     axios
-      .get("https://ecommerce.test/api/user/me")
+      .get(process.env.MIX_SENTRY_DSN_PUBLIC + "/api/user/me")
       .then((res) => {
         this.infoUser = res.data;
       })
@@ -148,17 +148,18 @@ export default {
     return {
       token: "",
       infoUser: "",
+      publicPath: process.env.MIX_SENTRY_DSN_PUBLIC
     };
   },
   methods: {
     logout: function () {
       axios
-        .delete("https://ecommerce.test/api/user/logout")
+        .delete(process.env.MIX_SENTRY_DSN_PUBLIC + "/api/user/logout")
         .then((res) => {
             if(res.data = 'success') {
                 // this.$cookies.remove('token');
                 localStorage.removeItem('authenticate');
-                window.location.href='/admin/login';
+                window.location.href='/admin-login';
             }
         })
         .catch((error) => console.log(error));

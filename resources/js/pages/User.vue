@@ -5,14 +5,14 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>DataTables</h1>
+            <h1>List User</h1>
           </div>
-          <div class="col-sm-6">
+          <!-- <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
               <li class="breadcrumb-item active">DataTables</li>
             </ol>
-          </div>
+          </div> -->
         </div>
       </div>
       <!-- /.container-fluid -->
@@ -24,9 +24,9 @@
         <div class="row">
           <div class="col-12">
             <div class="card">
-              <div class="card-header">
+              <!-- <div class="card-header">
                 <h3 class="card-title">DataTable with default features</h3>
-              </div>
+              </div> -->
               <div class="col-1">
                 <button
                   type="button"
@@ -261,7 +261,7 @@ export default {
         $("#password").attr("disabled", true);
         $("#password_confirm").attr("disabled", true);
         axios
-          .get("https://ecommerce.test/api/user/" + id)
+          .get(process.env.MIX_SENTRY_DSN_PUBLIC + "/api/user/" + id)
           .then((res) => {
             this.user_id = res.data.data.id;
             this.name = res.data.data.name;
@@ -273,7 +273,7 @@ export default {
     },
     update: function () {
       axios
-        .put("https://ecommerce.test/api/user/" + this.user_id, {
+        .put(process.env.MIX_SENTRY_DSN_PUBLIC + "/api/user/" + this.user_id, {
           email: this.email,
           name: this.name,
         })
@@ -291,7 +291,7 @@ export default {
     },
     register: function (e) {
       axios
-        .post("https://ecommerce.test/api/user/signup", {
+        .post(process.env.MIX_SENTRY_DSN_PUBLIC + "/api/user/signup", {
           email: this.email,
           password: this.password,
           password_confirmation: this.password_confirmation,
@@ -321,12 +321,12 @@ export default {
     },
     deleteUser: function () {
       axios
-        .delete("https://ecommerce.test/api/user/" + this.user_id)
+        .delete(process.env.MIX_SENTRY_DSN_PUBLIC + "/api/user/" + this.user_id)
         .then((res) => {
           if (!res.data.errors) {
             $("#modal-sm").css("display", "none");
             $("div").removeClass("modal-backdrop fade show");
-            toastr.success("User updatr successfully");
+            toastr.success("User delete successfully");
             this.name = "";
             this.email = "";
             this.getUsers();
@@ -336,7 +336,7 @@ export default {
     },
     getUsers: function () {
       axios
-        .get("https://ecommerce.test/api/user")
+        .get(process.env.MIX_SENTRY_DSN_PUBLIC + "/api/user")
         .then((res) => {
           this.users = res.data.data;
         })

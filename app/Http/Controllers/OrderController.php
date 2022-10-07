@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use Cart;
+use App\Models\Customer;
 
 class OrderController extends Controller
 {
@@ -37,6 +38,7 @@ class OrderController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'email' => 'required',
             'shipping_fullname' => 'required',
             'shipping_state' => 'required',
             'shipping_city' => 'required',
@@ -86,6 +88,13 @@ class OrderController extends Controller
         foreach($cartItems as $item) {
             $order->items()->attach($item->id, ['price' => $item->price, 'quantity' => $item->qty]);
         }
+
+        
+        // Save customer info
+        $customer = new Customer();
+        $customer->name = $request->input('shipping_fullname');
+        $customer->email = $request->input('email');
+        $customer->save();
 
         return redirect()->route('paypal.checkout', $order->id);
 

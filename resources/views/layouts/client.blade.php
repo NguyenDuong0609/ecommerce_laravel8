@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="ezone/assets/css/style.css">
     <link rel="stylesheet" href="ezone/assets/css/responsive.css">
     <script src="ezone/assets/js/vendor/modernizr-2.8.3.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 </head>
 
 <body>
@@ -31,7 +32,7 @@
         <![endif]-->
     <!-- header start -->
     <!--Notification Section-->
-    <div class="notification-section notification-section-padding  notification-img ptb-10">
+    {{--  <div class="notification-section notification-section-padding  notification-img ptb-10">
         <div class="container-fluid">
             <div class="notification-wrapper">
                 <div class="notification-pera-graph">
@@ -47,7 +48,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>  --}}
     @include('partials.header')
     <!-- header end -->
     <div class="pl-200 pr-200 overflow clearfix">

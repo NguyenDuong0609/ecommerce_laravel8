@@ -1,12 +1,12 @@
 @extends('layouts.clientv2')
 @section('content')
-    <div class="breadcrumb-area pt-205 pb-210" style="background-image: url(../ezone/assets/img/bg/breadcrumb.jpg)">
+    <div class="breadcrumb-area pt-205 pb-210" style="background-image: url(../ezone/assets/img/bg/iphone.jpg)">
         <div class="container">
             <div class="breadcrumb-content text-center">
                 <h2>cart page</h2>
                 <ul>
-                    <li><a href="{{ url('') }}">home</a></li>
-                    <li> cart page</li>
+                    <li><a href="{{ url('/') }}">home</a></li>
+                    <li style="color: black;">cart page</li>
                 </ul>
             </div>
         </div>

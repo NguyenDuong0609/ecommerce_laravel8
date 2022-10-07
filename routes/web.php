@@ -21,15 +21,16 @@ Route::get('/', function () {
 Auth::routes();
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/admin', [App\Http\Controllers\AdminController::class, 'index']);
-Route::get('/admin/login/', [App\Http\Controllers\AdminController::class, 'login']);
-
+Route::get('/admin-login', [App\Http\Controllers\AdminController::class, 'login']);
+Route::any('/admin/{all}', [App\Http\Controllers\AdminController::class, 'index'])->where(['all' => '.*']);
 
 // Route Client
 Route::get('/', [App\Http\Controllers\IndexController::class, 'index']);
 Route::get('/product-detail', [App\Http\Controllers\IndexController::class, 'productDetail']);
 Route::get('/category/{category_id}', [App\Http\Controllers\IndexController::class, 'productCategory']);
 Route::get('/product/{product_id}', [App\Http\Controllers\IndexController::class, 'productDetail']);
+Route::get('/search', [App\Http\Controllers\IndexController::class, 'search'])->name('search');
+Route::get('/sort', [App\Http\Controllers\IndexController::class, 'sort']);
 
 // Route Cart
 Route::get('/add-to-cart', [App\Http\Controllers\CartController::class, 'addCart']);

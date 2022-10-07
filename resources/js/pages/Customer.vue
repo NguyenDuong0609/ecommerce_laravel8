@@ -151,7 +151,7 @@ export default {
   methods: {
     getCustomers: function () {
       axios
-        .get("https://ecommerce.test/api/customer/")
+        .get(process.env.MIX_SENTRY_DSN_PUBLIC + "/api/customer/")
         .then((res) => {
           this.customers = res.data.data;
         })
@@ -165,7 +165,7 @@ export default {
         (this.title = title), (this.name = ""), (this.email = "");
       } else {
         axios
-          .get("https://ecommerce.test/api/customer/" + id)
+          .get(process.env.MIX_SENTRY_DSN_PUBLIC + "/api/customer/" + id)
           .then((res) => {
               this.customer_id = res.data.data.id;
             this.name = res.data.data.name;
@@ -178,7 +178,7 @@ export default {
     },
     update: function () {
       axios
-        .put("https://ecommerce.test/api/customer/" + this.customer_id, {
+        .put(process.env.MIX_SENTRY_DSN_PUBLIC + "/api/customer/" + this.customer_id, {
           name: this.name,
           email: this.email,
         })
@@ -206,7 +206,7 @@ export default {
     },
     deleteCustomer: function () {
       axios
-        .delete("https://ecommerce.test/api/customer/" + this.customer_id)
+        .delete(process.env.MIX_SENTRY_DSN_PUBLIC + "/api/customer/" + this.customer_id)
         .then((res) => {
           if (!res.data.errors) {
             $("#modal-sm").css("display", "none");

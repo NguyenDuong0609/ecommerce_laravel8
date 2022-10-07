@@ -185,15 +185,16 @@ export default {
   methods: {
     getCategories: function () {
       axios
-        .get("https://ecommerce.test/api/category/")
+        .get(process.env.MIX_SENTRY_DSN_PUBLIC + "/api/category/")
         .then((res) => {
+          console.log(res);
           this.categories = res.data.data;
         })
         .catch((error) => console.log(error));
     },
     getParentCate: function () {
       axios
-        .get("https://ecommerce.test/api/category/parent-cate")
+        .get(process.env.MIX_SENTRY_DSN_PUBLIC + "/api/category/parent-cate")
         .then((res) => {
           this.parentCate = res.data.data;
         })
@@ -208,7 +209,7 @@ export default {
       } else {
         console.log(id);
         axios
-          .get("https://ecommerce.test/api/category/" + id)
+          .get(process.env.MIX_SENTRY_DSN_PUBLIC + "/api/category/" + id)
           .then((res) => {
             this.cate_id = res.data.data[0].id;
             this.name = res.data.data[0].name;
@@ -223,7 +224,7 @@ export default {
     update: function () {
       console.log(this.parentSelected);
       axios
-        .put("https://ecommerce.test/api/category/" + this.cate_id, {
+        .put(process.env.MIX_SENTRY_DSN_PUBLIC + "/api/category/" + this.cate_id, {
           name: this.name,
           slug: this.slug,
           parent_id: this.parentSelected,
@@ -232,7 +233,7 @@ export default {
           if (!res.data.errors) {
             $("#modal-default").css("display", "none");
             $("div").removeClass("modal-backdrop fade show");
-            toastr.success("User updatr successfully");
+            toastr.success("Category update successfully");
             this.parentSelected = "";
             this.name = "";
             this.slug = "";
@@ -244,7 +245,7 @@ export default {
     add: function (e) {
       console.log(this.slug);
       axios
-        .post("https://ecommerce.test/api/category/add", {
+        .post(process.env.MIX_SENTRY_DSN_PUBLIC + "/api/category/add", {
           name: this.name,
           slug: this.slug,
           parent_id: this.parentSelected,
@@ -253,7 +254,7 @@ export default {
           if (!res.data.errors) {
             $("#modal-default").css("display", "none");
             $("div").removeClass("modal-backdrop fade show");
-            toastr.success("User add successfully");
+            toastr.success("Category add successfully");
             this.getCategories();
           } else {
             toastr.error("Please fill in form");
@@ -273,13 +274,13 @@ export default {
     },
     deleteCategory: function () {
       axios
-        .delete("https://ecommerce.test/api/category/" + this.cate_id)
+        .delete(process.env.MIX_SENTRY_DSN_PUBLIC + "/api/category/" + this.cate_id)
         .then((res) => {
           console.log(res);
           if (!res.data.errors) {
             $("#modal-sm").css("display", "none");
             $("div").removeClass("modal-backdrop fade show");
-            toastr.success("User updatr successfully");
+            toastr.success("Category delete successfully");
             this.name = "";
             this.slug = "";
             this.getCategories();
