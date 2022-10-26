@@ -11,7 +11,7 @@ class IndexController extends Controller
 {
     public function index() {
         $topProducts = Product::where('product_type_id', 1)->with('category')->get();
-        $sellerProducts = Product::where('product_type_id', 2)->with('category')->get();
+        $sellerProducts = Product::where('product_type_id', 2)->limit(6)->with('category')->get();
         $newProducts = Product::where('product_type_id', 3)->with('category')->get();
 
         return view('index', ['topProducts' => $topProducts, 'sellerProducts' => $sellerProducts, 'newProducts' => $newProducts]);
@@ -48,7 +48,7 @@ class IndexController extends Controller
                         <div class="product-wrapper product-box-style mb-30">
                             <div class="product-img">
                                 <a href="/product/'. $product->id .'">
-                                    <img src="../images/'. $product->images .'" alt="">
+                                    <img src="'.env('AWS_URL').$product->images .'" alt="">
                                 </a>
                                 <span>hot</span>
                                 <div class="product-action">
@@ -68,7 +68,7 @@ class IndexController extends Controller
                             <div class="product-wrapper mb-30 single-product-list product-list-right-pr mb-60">
                                 <div class="product-img list-img-width">
                                     <a href="/product/'. $product->id .'">
-                                        <img src="../images/'. $product->images .'" alt="">
+                                        <img src="'.env('AWS_URL').$product->images .'" alt="">
                                     </a>
                                     <span>hot</span>
                                 </div>
@@ -136,7 +136,7 @@ class IndexController extends Controller
                         <div class="product-wrapper product-box-style mb-30">
                             <div class="product-img">
                                 <a href="/product/'. $product->id .'">
-                                    <img src="../images/'. $product->images .'" alt="">
+                                    <img src="'.env('AWS_URL').$product->images .'" alt="">
                                 </a>
                                 <span>hot</span>
                                 <div class="product-action">
@@ -156,7 +156,7 @@ class IndexController extends Controller
                             <div class="product-wrapper mb-30 single-product-list product-list-right-pr mb-60">
                                 <div class="product-img list-img-width">
                                     <a href="/product/'. $product->id .'">
-                                        <img src="../images/'. $product->images .'" alt="">
+                                        <img src="'.env('AWS_URL').$product->images .'" alt="">
                                     </a>
                                     <span>hot</span>
                                 </div>

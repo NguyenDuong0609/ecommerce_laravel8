@@ -64,7 +64,7 @@
                                     <div class="product-img-3">
                                         <a href="{{ url('/') }}/product/{{ $product->id }}">
                                             {{--  <img src="images/<?php echo explode(",", $product->images)[1] ?>" alt="">  --}}
-                                            <img src="images/<?php echo $product->images ?>" alt="">
+                                            <img src="<?php echo env('AWS_URL').$product->images ?>" alt="">
                                         </a>
                                         <div class="product-action-right">
                                             {{--  <a class="animate-right" href="#" data-target="#exampleModal" data-toggle="modal" title="Quick View">
@@ -640,9 +640,9 @@
                 <div class="best-selling-left">
                     <div class="product-wrapper">
                         <div class="product-img-4">
-                            <a href="#">
+                            <a href="{{ url('/') }}/product/{{ $sellerProducts[0]->id }}">
                                 {{--  <img src="images/<?php echo explode(",", $sellerProducts[0]->images)[1] ?>" alt="">  --}}
-                                <img src="images/<?php echo $sellerProducts[0]->images ?>" alt="">
+                                <img src="<?php echo env('AWS_URL').$sellerProducts[0]->images ?>" alt="" style="width: 80%; height: 20%">
                             </a>
                             <div class="product-action-right">
                                 <a href="javascript:void(0)" class="animate-top" title="Add To Cart" data-quantity="1" data-product-id="{{ $product->id }}" data-price="{{ $product->price }}" data-name="{{ $product->title }}"><i class="pe-7s-cart"></i></a>
@@ -677,7 +677,7 @@
                                         <div class="product-img-4">
                                             <a href="{{ url('/') }}/product/{{ $product->id }}">
                                                 {{--  <img src="images/<?php echo explode(",", $product->images)[1] ?>" alt="">  --}}
-                                                <img src="images/<?php echo $product->images ?>" alt="">
+                                                <img src="<?php echo env('AWS_URL').$product->images ?>" alt="">
                                             </a>
                                             <div class="product-action-right">
                                                 <a href="javascript:void(0)" class="animate-top" title="Add To Cart" data-quantity="1" data-product-id="{{ $product->id }}" data-price="{{ $product->price }}" data-name="{{ $product->title }}"><i class="pe-7s-cart"></i></a>
@@ -737,7 +737,7 @@
                         <div class="product-img-5">
                             <a href="{{ url('/') }}/product/{{ $product->id }}">
                                 {{--  <img src="images/<?php echo explode(",", $product->images)[1] ?>" alt="" width="189px" height="190px">  --}}
-                                <img src="images/<?php echo $product->images ?>" alt="" width="189px" height="190px">
+                                <img src="<?php echo env('AWS_URL').$product->images ?>" alt="" width="189px" height="190px">
                             </a>
                         </div>
                         <div class="product-content-7">

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Validator;
 use App\Models\Product;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -71,13 +72,15 @@ class ProductController extends Controller
                 $i=1;
 				foreach ($files as $file) {
                     $fileName = $request->slug.$i.".". $file->getClientOriginalExtension();
-                    $file->move(public_path('images'), $fileName);
-                    if(count($files) == 1) {
-                        $images = $fileName;    
-                    } else {
-                        $images = $images.",".$fileName;
-                        $i++;
-                    }
+                    $images = $this->Upload($file, $fileName);
+
+                    // $file->move(public_path('images'), $fileName);
+                    // if(count($files) == 1) {
+                    //     $images = $fileName;    
+                    // } else {
+                    //     $images = $images.",".$fileName;
+                    //     $i++;
+                    // }
 				}
 
                 $request['images'] = $images;
@@ -159,18 +162,17 @@ class ProductController extends Controller
                         $i=1;
                         foreach ($files as $file) {
                             $fileName = $request->slug.$i.".". $file->getClientOriginalExtension();
-                            //return $fileName;
-                            $file->move(public_path('images'), $fileName);
+                            $images = $this->Upload($file, $fileName);
+                            // $file->move(public_path('images'), $fileName);
 
-                            if(count($files) == 1) {
-                                $images = $fileName;    
-                            } else {
-                                $images = $images.",".$fileName;
-                                $i++;
-                            }
+                            // if(count($files) == 1) {
+                            //     $images = $fileName;    
+                            // } else {
+                            //     $images = $images.",".$fileName;
+                            //     $i++;
+                            // }
                         }
                         $request['images'] = $images;
-                        //return $request['images'];
                     } else {
                         return response()->json([
                             'status' => 204,
@@ -230,7 +232,8 @@ class ProductController extends Controller
             }
             
             $data->delete();
-            unlink(public_path('images/'). $images);
+            Storage::disk('s3')->delete($images);
+            // unlink(public_path('images/'). $images);
             // foreach($images as $image) {
             //     unlink(public_path('images/'). $image);
             // }
@@ -245,5 +248,15 @@ class ProductController extends Controller
                 'errors' => $e->getMessage()
             ]);
         }
+    }
+
+    public function Upload($file, $fileName)
+    {
+        $path = $file->storeAs(
+            'images',
+            $fileName,
+            's3'
+        );
+        return $path;
     }
 }
