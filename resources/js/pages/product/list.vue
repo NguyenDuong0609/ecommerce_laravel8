@@ -40,7 +40,7 @@
                         <img
                           width="70"
                           height="70"
-                          v-bind:src="'/images/' + product.images"
+                          v-bind:src="AWS_URL + product.images"
                           v-if="product.images.includes(',') == false"
                         />{{ product.id }}
                       </td>
@@ -184,6 +184,7 @@ export default {
       products: [],
       idProduct: "",
       pagination: {},
+      AWS_URL: process.env.MIX_SENTRY_DSN_PUBLIC_AWS_URL
     };
   },
   methods: {
@@ -192,7 +193,6 @@ export default {
       axios
         .get(pagi)
         .then((res) => {
-          console.log(res);
           this.products = res.data.data.data;
           this.pagination = {
             current_page: res.data.data.current_page,
