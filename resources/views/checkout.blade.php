@@ -5,7 +5,7 @@
         <div class="breadcrumb-content text-center">
             <h2>checkout</h2>
             <ul>
-                <li><a href="{{ url('') }}">home</a></li>
+                <li><a href="{{ env('DOMAIN') }}">home</a></li>
                 <li style="color: black;">checkout </li>
             </ul>
         </div>

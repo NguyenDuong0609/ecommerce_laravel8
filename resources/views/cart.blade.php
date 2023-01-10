@@ -5,7 +5,7 @@
             <div class="breadcrumb-content text-center">
                 <h2>cart page</h2>
                 <ul>
-                    <li><a href="{{ url('/') }}">home</a></li>
+                    <li><a href="{{ env('DOMAIN') }}">home</a></li>
                     <li style="color: black;">cart page</li>
                 </ul>
             </div>
@@ -70,7 +70,7 @@
                                         <li>Tax<span>{{ Cart::tax() }}</span></li>
                                         <li>Total<span>{{ Cart::total() }}</span></li>
                                     </ul>
-                                    <a href="{{ url('/checkout')}}">Proceed to checkout</a>
+                                    <a href="{{ env('DOMAIN') }}/checkout">Proceed to checkout</a>
                                 </div>
                             </div>
                         </div>

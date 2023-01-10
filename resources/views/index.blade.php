@@ -62,7 +62,7 @@
                             <div class="custom-col-style-2 custom-col-4">
                                 <div class="product-wrapper product-border mb-24">
                                     <div class="product-img-3">
-                                        <a href="{{ url('/') }}/product/{{ $product->id }}">
+                                        <a href="{{ env('DOMAIN') }}/product/{{ $product->id }}">
                                             {{--  <img src="images/<?php echo explode(",", $product->images)[1] ?>" alt="">  --}}
                                             <img src="<?php echo env('AWS_URL').$product->images ?>" alt="">
                                         </a>
@@ -640,7 +640,7 @@
                 <div class="best-selling-left">
                     <div class="product-wrapper">
                         <div class="product-img-4">
-                            <a href="{{ url('/') }}/product/{{ $sellerProducts[0]->id }}">
+                            <a href="{{ env('DOMAIN') }}/product/{{ $sellerProducts[0]->id }}">
                                 {{--  <img src="images/<?php echo explode(",", $sellerProducts[0]->images)[1] ?>" alt="">  --}}
                                 <img src="<?php echo env('AWS_URL').$sellerProducts[0]->images ?>" alt="" style="width: 80%; height: 20%">
                             </a>
@@ -659,7 +659,7 @@
                                 <i class="icofont icofont-star yellow"></i>
                                 <i class="icofont icofont-star yellow"></i>
                             </div>
-                            <h4><a href="{{ url('/') }}/product/{{ $sellerProducts[0]->id }}" style="color: white;">{{ $sellerProducts[0]->title }}</a></h4>
+                            <h4><a href="{{ env('DOMAIN') }}/product/{{ $sellerProducts[0]->id }}" style="color: white;">{{ $sellerProducts[0]->title }}</a></h4>
                             <span style="color: white;">{{ $sellerProducts[0]->category->name }}</span>
                             <h5 style="color: white;">${{ $sellerProducts[0]->price }}</h5>
                         </div>
@@ -675,7 +675,7 @@
                                 <div class="custom-col-style-3 custom-col-3">
                                     <div class="product-wrapper mb-6">
                                         <div class="product-img-4">
-                                            <a href="{{ url('/') }}/product/{{ $product->id }}">
+                                            <a href="{{ env('DOMAIN') }}/product/{{ $product->id }}">
                                                 {{--  <img src="images/<?php echo explode(",", $product->images)[1] ?>" alt="">  --}}
                                                 <img src="<?php echo env('AWS_URL').$product->images ?>" alt="">
                                             </a>
@@ -735,7 +735,7 @@
                 <div class="col-lg-6 col-xl-4">
                     <div class="product-wrapper product-wrapper-border mb-30">
                         <div class="product-img-5">
-                            <a href="{{ url('/') }}/product/{{ $product->id }}">
+                            <a href="{{ env('DOMAIN') }}/product/{{ $product->id }}">
                                 {{--  <img src="images/<?php echo explode(",", $product->images)[1] ?>" alt="" width="189px" height="190px">  --}}
                                 <img src="<?php echo env('AWS_URL').$product->images ?>" alt="" width="189px" height="190px">
                             </a>

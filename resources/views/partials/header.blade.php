@@ -11,7 +11,7 @@
     <div class="header-bottom pt-40 pb-30 clearfix">
         <div class="header-bottom-wrapper pr-200 pl-200">
             <div class="logo-3">
-                <a href="{{ url('/')}}">
+                <a href="{{ env('DOMAIN') }}">
                     <img src="ezone/assets/img/logo/logo-3.png" alt="">
                 </a>
             </div>
@@ -31,7 +31,7 @@
                     </div>
                 </div>  --}}
                 <div class="categories-wrapper">
-                    <form action="{{ url('search')}}" method="GET">
+                    <form action="{{ env('DOMAIN') }}/search" method="GET">
                         @csrf
                         <input placeholder="Enter Your key word" type="text" name="search">
                         <button type="submit"> Search</button>
@@ -45,7 +45,7 @@
                             <a href="#"><i class="pe-7s-cart"></i></a>
                         </div>
                         <div class="same-style-text">
-                            <a href="{{ url('/cart') }}">My Cart <br><span style="font-weight: bold">{{ Cart::count() }}</span> Item</a>
+                            <a href="{{ env('DOMAIN') }}/cart">My Cart <br><span style="font-weight: bold">{{ Cart::count() }}</span> Item</a>
                         </div>
                     </div>
                 </div>

@@ -5,8 +5,8 @@
             <div class="breadcrumb-content text-center">
                 <h2 style="color: white;">product details</h2>
                 <ul>
-                    <li><a href="{{ url('/')}}" style="color: white;">home </a></li>
-                    <li><a href="{{ url('/') }}/category/{{ $productDetail[0]->category_id }}" style="color: white;">{{ $breadcrumb['category'] }} </a></li>
+                    <li><a href="{{ env('DOMAIN') }}" style="color: white;">home </a></li>
+                    <li><a href="{{ env('DOMAIN') }}/category/{{ $productDetail[0]->category_id }}" style="color: white;">{{ $breadcrumb['category'] }} </a></li>
                     <li style="color: black;">{{ $breadcrumb['product'] }}</li>
                 </ul>
             </div>
@@ -148,7 +148,7 @@
                     @foreach ($productRelated as $product)
                     <div class="product-wrapper">
                         <div class="product-img">
-                            <a href="{{ url('/') }}/product/{{ $product->id }}">
+                            <a href="{{ env('DOMAIN') }}/product/{{ $product->id }}">
                                 {{--  <img src="../images/<?php echo explode(",", $product->images)[1] ?>" alt="">  --}}
                                 <img src="<?php echo env('AWS_URL').$product->images ?>" alt="">
                             </a>

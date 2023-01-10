@@ -1960,8 +1960,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  mounted: function mounted() {
-    console.log('Component mounted.');
+  mounted: function mounted() {//console.log('Component mounted.')
   }
 });
 
@@ -2154,8 +2153,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  mounted: function mounted() {
-    console.log("Component mounted.");
+  mounted: function mounted() {//console.log("Component mounted.");
   }
 });
 
@@ -5641,7 +5639,8 @@ __webpack_require__.r(__webpack_exports__);
     return {
       products: [],
       idProduct: "",
-      pagination: {}
+      pagination: {},
+      AWS_URL: "https://ecommercelaravel8.s3.amazonaws.com/"
     };
   },
   methods: {
@@ -5650,7 +5649,6 @@ __webpack_require__.r(__webpack_exports__);
 
       pagi = pagi || "http://localhost:8000" + "/api/product/";
       axios.get(pagi).then(function (res) {
-        console.log(res);
         _this.products = res.data.data.data;
         _this.pagination = {
           current_page: res.data.data.current_page,
@@ -47752,7 +47750,7 @@ var render = function() {
                                   attrs: {
                                     width: "70",
                                     height: "70",
-                                    src: "/images/" + product.images
+                                    src: _vm.AWS_URL + product.images
                                   }
                                 })
                               : _vm._e(),

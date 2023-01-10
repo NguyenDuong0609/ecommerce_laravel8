@@ -6,7 +6,7 @@
             <div class="breadcrumb-content text-center">
                 <h2 style="color: white;">Category</h2>
                 <ul>
-                    <li style="color: white;"><a href="{{ url('/')}}">home</a></li>
+                    <li style="color: white;"><a href="{{ env('DOMAIN') }}">home</a></li>
                     @if($breadcrumb != null)
                         <li style="color: black;">{{ $breadcrumb[0]->name }}</li>
                     @endif
@@ -35,7 +35,7 @@
                                     @if (count($categories) > 0)
                                         @foreach ($categories as $category)
                                             <li>
-                                                <a href="{{ url('/') }}/category/{{ $category->id }}">{{ $category->name }}</a>
+                                                <a href="{{ env('DOMAIN') }}/category/{{ $category->id }}">{{ $category->name }}</a>
                                             </li>
                                         @endforeach
                                     @endif
@@ -49,10 +49,10 @@
                                     <div class="sidebar-top-rated mb-30">
                                         <div class="single-top-rated">
                                             <div class="top-rated-img">
-                                                <a href="{{ url('/') }}/product/{{ $product->id }}"><img src="<?php echo env('AWS_URL').$product->images ?>" alt="" width="91" height="88"></a>
+                                                <a href="{{ env('DOMAIN') }}/product/{{ $product->id }}"><img src="<?php echo env('AWS_URL').$product->images ?>" alt="" width="91" height="88"></a>
                                             </div>
                                             <div class="top-rated-text">
-                                                <h4><a href="{{ url('/') }}/product/{{ $product->id }}">{{ $product->title }}</a></h4>
+                                                <h4><a href="{{ env('DOMAIN') }}/product/{{ $product->id }}">{{ $product->title }}</a></h4>
                                                 <div class="top-rated-rating">
                                                     <ul>
                                                         <li><i class="pe-7s-star"></i></li>
@@ -107,7 +107,7 @@
                                         <div class="col-lg-4 col-md-6">
                                             <div class="product-wrapper product-box-style mb-30">
                                                 <div class="product-img">
-                                                    <a href="{{ url('/') }}/product/{{ $product->id }}">
+                                                    <a href="{{ env('DOMAIN') }}/product/{{ $product->id }}">
                                                         {{--  <img src="../images/<?php echo explode(",", $product->images)[1] ?>"  --}}
                                                         <img src="<?php echo env('AWS_URL').$product->images ?>"
                                                             alt="">
@@ -140,7 +140,7 @@
                                             <div
                                                 class="product-wrapper mb-30 single-product-list product-list-right-pr mb-60">
                                                 <div class="product-img list-img-width">
-                                                    <a href="{{ url('/') }}/product/{{ $product->id }}">
+                                                    <a href="{{ env('DOMAIN') }}/product/{{ $product->id }}">
                                                         {{--  <img src="../images/<?php echo explode(",", $product->images)[1] ?>"  --}}
                                                         <img src="<?php echo env('AWS_URL').$product->images ?>"
                                                             alt="">
@@ -210,12 +210,14 @@
             $value = $(this).val();
             $.ajax({
                 type: 'get',
-                url: '{{ URL::to('/search') }}',
+                url: 'http://laravel.nguyenduongdev.com/search',
                 data: {
                     'search': $value,
                     'idCate': $id_cate
                 },
                 success:function(data){
+                    url= '{{ URL::to('/search') }}';
+                    console.log(url);
                     $('#content-7').html(data[0]);
                     $('#content-8').html(data[1]);
                     $('#content-paginate').html(data[2]);

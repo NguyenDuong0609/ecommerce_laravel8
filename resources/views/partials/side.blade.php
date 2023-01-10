@@ -8,21 +8,21 @@
                 @foreach ($categories as $category)
                     @if(count($category->children) > 0)
                     <li>
-                        <a href="{{ url('/') }}/category/{{ $category->id }}"><img alt="" src="ezone/assets/img/icon-img/7.png">{{ $category->name }}<i class="pe-7s-angle-right"></i></a>
+                        <a href="{{ env('DOMAIN') }}/category/{{ $category->id }}"><img alt="" src="ezone/assets/img/icon-img/7.png">{{ $category->name }}<i class="pe-7s-angle-right"></i></a>
                         <div class="category-menu-dropdown">
                             <div class="category-dropdown-style category-common3">
                                 <ul>
                                     @foreach ($category->children as $children)
 
                                     @endforeach
-                                    <li><a href="{{ url('/') }}/category/{{ $children->id }}">{{ $children->name }}</a></li>
+                                    <li><a href="{{ env('DOMAIN') }}/category/{{ $children->id }}">{{ $children->name }}</a></li>
                                 </ul>
                             </div>
                         </div>
                     </li>
                     @else
                         <li>
-                            <a href="{{ url('/') }}/category/{{ $category->id }}"><img alt="" src="ezone/assets/img/icon-img/13.png">{{ $category->name }}</a>
+                            <a href="{{ env('DOMAIN') }}/category/{{ $category->id }}"><img alt="" src="ezone/assets/img/icon-img/13.png">{{ $category->name }}</a>
                         </li>
                     @endif
                 @endforeach
