@@ -2,7 +2,7 @@
     <div class="header-bottom pt-40 pb-30 clearfix">
         <div class="header-bottom-wrapper pr-200 pl-200">
             <div class="logo-3">
-                <a href="{{ url('/')}}">
+                <a href="{{ env('DOMAIN') }}">
                     <img src="../ezone/assets/img/logo/logo-3.png" alt="">
                 </a>
             </div>
