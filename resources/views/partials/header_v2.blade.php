@@ -13,7 +13,7 @@
                             <a href="#"><i class="pe-7s-cart"></i></a>
                         </div>
                         <div class="same-style-text">
-                            <a href="{{ url('/cart') }}">My Cart <br><span style="font-weight: bold">{{ Cart::count() }}</span> Item</a>
+                            <a href="{{ env('DOMAIN') }}/cart">My Cart <br><span style="font-weight: bold">{{ Cart::count() }}</span> Item</a>
                         </div>
                     </div>
                 </div>
