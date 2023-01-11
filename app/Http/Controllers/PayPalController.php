@@ -36,7 +36,7 @@ class PayPalController extends Controller
 
         $checkoutData = [
             'items' => $cartItems,
-            'return_url' => route('http://laravel.nguyenduongdev.com/paypal/checkout-success', $orderId),
+            'return_url' => route('http://laravel.nguyenduongdev.com/paypal/checkout-success/' + $orderId),
             'cancel_url' => route('http://laravel.nguyenduongdev.com/paypal/checkout-cancel'),
             'invoice_id' => uniqid(),
             'invoice_description'=> 'Order description',
