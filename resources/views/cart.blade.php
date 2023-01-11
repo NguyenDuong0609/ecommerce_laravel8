@@ -18,7 +18,7 @@
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <h1 class="cart-heading">Cart</h1>
-                    <form action="{{ route('cart.update') }}">
+                    <form action="http://laravel.nguyenduongdev.com/update-cart">
                         {{ csrf_field() }}
                         <div class="table-content table-responsive">
                             <table>
@@ -86,7 +86,7 @@
             var product_id = $(this).data('product-id');
 
             var token = "{{ csrf_token() }}";
-            var path = "{{ route('cart.delete') }}";
+            var path = "http://laravel.nguyenduongdev.com/delete-cart";
 
             $.ajax({
                 url: path,
@@ -106,7 +106,7 @@
         $(document).on('click', '#apply_coupon', function(e) {
             e.preventDefault();
             var coupon_code =  $('input[name = coupon_code]').val();
-            var path = "{{ route('cart.coupon') }}";
+            var path = "http://laravel.nguyenduongdev.com/coupon";
 
             $.ajax({
                 url: path,

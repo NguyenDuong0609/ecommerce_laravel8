@@ -231,7 +231,7 @@
         var image = $(this).data('image');
 
         var token = "{{ csrf_token() }}";
-        var path = "{{ route('cart.store') }}";
+        var path = "http://laravel.nguyenduongdev.com/cart/store";
 
         $.ajax({
             url: path,
