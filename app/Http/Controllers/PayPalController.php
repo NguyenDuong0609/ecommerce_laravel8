@@ -17,13 +17,9 @@ class PayPalController extends Controller
 
         $checkoutData = $this->checkoutData($orderId);
 
-        dd($checkoutData);
-
         $provider = new ExpressCheckout();
 
         $response = $provider->setExpressCheckout($checkoutData);
-
-        //dd($response);
 
         return redirect($response['paypal_link']);
     }
@@ -37,6 +33,8 @@ class PayPalController extends Controller
                 'qty' => $item['qty'],
             ];
         }, Cart::content()->toarray());
+
+        dd(Cart::total());
 
         $checkoutData = [
             'items' => $cartItems,
