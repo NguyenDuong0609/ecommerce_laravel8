@@ -53,7 +53,6 @@ class PayPalController extends Controller
 
     public function getExpressCheckoutSuccess(Request $request, $orderId)
     {
-        dd($request);
         $token = $request->get('token');
         $payerId = $request->get('PayerID');
         $provider = new ExpressCheckout();
