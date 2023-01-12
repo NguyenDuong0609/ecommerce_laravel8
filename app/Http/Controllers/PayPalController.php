@@ -21,6 +21,8 @@ class PayPalController extends Controller
 
         $response = $provider->setExpressCheckout($checkoutData);
 
+        dd($response);
+
         return redirect($response['paypal_link']);
     }
 
@@ -42,8 +44,6 @@ class PayPalController extends Controller
             'invoice_description'=> 'Order description',
             'total' => Cart::total()
         ];
-
-        dd(Cart::content());
 
         return $checkoutData;
     }
@@ -69,11 +69,7 @@ class PayPalController extends Controller
                 $payerId = "9VD6H5QRC7GCE";
             }
 
-            dd($checkoutData);
-
             $payment_status = $provider->doExpressCheckoutPayment($checkoutData, $token, $payerId);
-
-            dd($payment_status);
 
             $status = $payment_status['PAYMENTINFO_0_PAYMENTSTATUS'];
 
