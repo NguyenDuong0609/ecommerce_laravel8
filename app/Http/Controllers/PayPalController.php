@@ -63,6 +63,7 @@ class PayPalController extends Controller
         if (in_array(strtoupper($response['ACK']), ['SUCCESS', 'SUCCESSWITHWARNING'])) {
 
             //Perfom transaction on Paypal
+            dd($payerId);
             $payment_status = $provider->doExpressCheckoutPayment($checkoutData, $token, $payerId);
 
             dd($payment_status);
