@@ -17,6 +17,8 @@ class PayPalController extends Controller
 
         $checkoutData = $this->checkoutData($orderId);
 
+        dd($checkoutData);
+
         $provider = new ExpressCheckout();
 
         $response = $provider->setExpressCheckout($checkoutData);
