@@ -66,6 +66,9 @@ class PayPalController extends Controller
             if(is_null($payerId)) {
                 $payerId = "9VD6H5QRC7GCE";
             }
+
+            dd($checkoutData);
+            
             $payment_status = $provider->doExpressCheckoutPayment($checkoutData, $token, $payerId);
 
             dd($payment_status);
