@@ -43,6 +43,8 @@ class PayPalController extends Controller
             'total' => Cart::total()
         ];
 
+        dd(Cart::content());
+
         return $checkoutData;
     }
 
@@ -68,7 +70,7 @@ class PayPalController extends Controller
             }
 
             dd($checkoutData);
-            
+
             $payment_status = $provider->doExpressCheckoutPayment($checkoutData, $token, $payerId);
 
             dd($payment_status);
