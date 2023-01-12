@@ -36,7 +36,7 @@ class PayPalController extends Controller
 
         $checkoutData = [
             'items' => $cartItems,
-            'return_url' => route('paypal.success'.$orderId),
+            'return_url' => route('paypal.success', $orderId),
             'cancel_url' => route('paypal.cancel'),
             'invoice_id' => uniqid(),
             'invoice_description'=> 'Order description',
