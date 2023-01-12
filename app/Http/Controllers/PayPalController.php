@@ -21,8 +21,6 @@ class PayPalController extends Controller
 
         $response = $provider->setExpressCheckout($checkoutData);
 
-        dd($response);
-
         return redirect($response['paypal_link']);
     }
 
@@ -55,6 +53,7 @@ class PayPalController extends Controller
 
     public function getExpressCheckoutSuccess(Request $request, $orderId)
     {
+        dd($request);
         $token = $request->get('token');
         $payerId = $request->get('PayerID');
         $provider = new ExpressCheckout();
