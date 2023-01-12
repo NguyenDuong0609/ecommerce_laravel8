@@ -65,6 +65,8 @@ class PayPalController extends Controller
             //Perfom transaction on Paypal
             $payment_status = $provider->doExpressCheckoutPayment($checkoutData, $token, $payerId);
 
+            dd($payment_status);
+
             $status = $payment_status['PAYMENTINFO_0_PAYMENTSTATUS'];
 
             if(in_array($status, ['Completed', 'Processed'])) {
