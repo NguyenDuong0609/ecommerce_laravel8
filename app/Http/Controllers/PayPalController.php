@@ -34,7 +34,6 @@ class PayPalController extends Controller
             ];
         }, Cart::content()->toarray());
 
-        dd(Cart::total());
 
         $checkoutData = [
             'items' => $cartItems,
@@ -42,7 +41,7 @@ class PayPalController extends Controller
             'cancel_url' => route('paypal.cancel'),
             'invoice_id' => uniqid(),
             'invoice_description'=> 'Order description',
-            'total' => Cart::total()
+            'total' => "10"
         ];
 
         return $checkoutData;
