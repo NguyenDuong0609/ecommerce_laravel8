@@ -209,8 +209,8 @@
             $id_cate = $string.substr(-1, $string.length -1);
             $value = $(this).val();
             $.ajax({
-                type: 'get',
-                url: 'http://laravel.nguyenduongdev.com/search',
+                type: "get",
+                url: "{{ env('DOMAIN') }}/search",
                 data: {
                     'search': $value,
                     'idCate': $id_cate
@@ -256,7 +256,7 @@
             var image = $(this).data('image');
  
             var token = "{{ csrf_token() }}";
-            var path = "http://laravel.nguyenduongdev.com/cart/store";
+            var path = "{{ env('DOMAIN') }}/cart/store";
  
             $.ajax({
                 url: path,

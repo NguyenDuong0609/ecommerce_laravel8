@@ -136,13 +136,12 @@
 <script>
 export default {
   mounted() {
-
     axios
       .get(process.env.MIX_SENTRY_DSN_PUBLIC + "/api/user/me")
       .then((res) => {
         this.infoUser = res.data;
       })
-      .catch((error) => window.location.href='/admin/login');
+      .catch((error) => window.location.href='/admin-login');
   },
   data() {
     return {

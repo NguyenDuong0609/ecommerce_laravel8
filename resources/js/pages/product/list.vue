@@ -31,18 +31,19 @@
                   <tbody>
                     <tr v-for="(product, index) in products">
                       <td>
+                        {{ product.id }}
                         <img
                           width="70"
                           height="70"
                           v-bind:src="'/images/' + product.images.split(',')[1]"
                           v-if="product.images.includes(',')"
-                        />{{ product.id }}
+                        />
                         <img
                           width="70"
                           height="70"
                           v-bind:src="AWS_URL + product.images"
                           v-if="product.images.includes(',') == false"
-                        />{{ product.id }}
+                        />
                       </td>
                       <td>{{ product.title }}</td>
                       <td>{{ product.category.name }}</td>

@@ -10,7 +10,7 @@
 
             <form @submit.prevent="login">
                 <div class="input-group mb-3">
-                <input type="email" class="form-control" v-model="email" placeholder="Email" required>
+                <input type="text" class="form-control" v-model="email" placeholder="Email" required>
                 <div class="input-group-append">
                     <div class="input-group-text">
                     <span class="fas fa-envelope"></span>
@@ -70,9 +70,11 @@
         },
         methods: {
             login: function (e) {
-                console.log(process.env.MIX_SENTRY_DSN_PUBLIC);
                 e.preventDefault();
-                axios.post(process.env.MIX_SENTRY_DSN_PUBLIC + '/api/user/login', { email: this.email, password: this.password})
+                if (!/^[^@]+@\w+(\.\w+)+\w$/.test(this.email)) {
+                    toastr.error("Please enter a valid email address");
+                } else {
+                    axios.post(process.env.MIX_SENTRY_DSN_PUBLIC + '/api/user/login', { email: this.email, password: this.password})
                     .then((res) => {
                         if(!res.data.errors) {
                             localStorage.setItem('authenticate', true);
@@ -82,6 +84,7 @@
                         }
                     })
                     .catch((error) => console.log(error));
+                }
             }
         }
     }

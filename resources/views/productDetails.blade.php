@@ -98,7 +98,7 @@
                             </div>
 
                             <div class="quickview-btn-cart">
-                                <a href="javascript:void(0)" class="btn-hover-black" data-quantity="1" data-product-id="{{ $productDetail[0]->id }}" data-price="{{ $productDetail[0]->price }}" data-name="{{ $productDetail[0]->title }}">add to cart</a>
+                                <a href="javascript:void(0)" class="btn-hover-black" data-product-id="{{ $productDetail[0]->id }}" data-price="{{ $productDetail[0]->price }}" data-name="{{ $productDetail[0]->title }}">add to cart</a>
                             </div>
                             <div class="quickview-btn-wishlist">
                                 <a class="btn-hover" href="#"><i class="pe-7s-like"></i></a>
@@ -195,13 +195,13 @@
        $(document).on('click', '.btn-hover-black', function(e) {
            e.preventDefault();
            var product_id = $(this).data('product-id');
-           var product_qty = $(this).data('quantity');
+           var product_qty = $("input[name=qtybutton]").val();
            var product_price = $(this).data('price');
            var product_name = $(this).data('name');
            var image = $(this).data('image');
 
            var token = "{{ csrf_token() }}";
-           var path = "http://laravel.nguyenduongdev.com/cart/store";
+           var path = "{{ env('DOMAIN') }}/cart/store";
 
            $.ajax({
                url: path,
@@ -225,13 +225,13 @@
        $(document).on('click', '.animate-top', function(e) {
         e.preventDefault();
         var product_id = $(this).data('product-id');
-        var product_qty = $(this).data('quantity');
+        var product_qty = $("input[name=qtybutton]").val();
         var product_price = $(this).data('price');
         var product_name = $(this).data('name');
         var image = $(this).data('image');
 
         var token = "{{ csrf_token() }}";
-        var path = "http://laravel.nguyenduongdev.com/cart/store";
+        var path = "{{ env('DOMAIN') }}/cart/store";
 
         $.ajax({
             url: path,

@@ -42,10 +42,9 @@ export default {
     }
   },
   mounted() {
-    // if((localStorage.getItem('authenticate') == false) || !(localStorage.getItem('authenticate'))) {
-    //      window.location.href='/admin/login';
-    // }
-    // console.log(localStorage.getItem('authenticate'));
+    if((localStorage.getItem('authenticate') == false) || !(localStorage.getItem('authenticate'))) {
+         window.location.href='/admin-login';
+    }
   },
 
 };

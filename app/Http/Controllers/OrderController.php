@@ -91,10 +91,14 @@ class OrderController extends Controller
 
         
         // Save customer info
-        $customer = new Customer();
-        $customer->name = $request->input('shipping_fullname');
-        $customer->email = $request->input('email');
-        $customer->save();
+        // $customer = new Customer();
+        // $customer->name = $request->input('shipping_fullname');
+        // $customer->email = $request->input('email');
+        // $customer->save();
+        $customer = Customer::updateOrCreate(
+            ['email' => $request->input('email')],
+            ['name' => $request->input('shipping_fullname')]
+        );
 
         return redirect()->route('paypal.checkout', $order->id);
 

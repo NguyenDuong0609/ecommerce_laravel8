@@ -842,7 +842,7 @@
         var image = $(this).data('image');
 
         var token = "{{ csrf_token() }}";
-        var path = "http://laravel.nguyenduongdev.com/cart/store";
+        var path = "{{ env('DOMAIN') }}/cart/store";
 
         $.ajax({
             url: path,
