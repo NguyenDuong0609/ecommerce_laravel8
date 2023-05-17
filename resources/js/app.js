@@ -7,7 +7,7 @@
 require('./bootstrap');
 
 window.Vue = require('vue').default;
-import router from './router/routes';
+import router from './router/index';
 import VueRouter from 'vue-router';
 import store from './store/index';
 
