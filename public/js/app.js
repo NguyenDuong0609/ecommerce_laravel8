@@ -1894,10 +1894,10 @@ __webpack_require__.r(__webpack_exports__);
       publicPath: "http://localhost:8000"
     };
   },
-  mounted: function mounted() {// if((localStorage.getItem('authenticate') == false) || !(localStorage.getItem('authenticate'))) {
-    //      window.location.href='/admin/login';
-    // }
-    // console.log(localStorage.getItem('authenticate'));
+  mounted: function mounted() {
+    if (localStorage.getItem('authenticate') == false || !localStorage.getItem('authenticate')) {
+      window.location.href = '/admin-login';
+    }
   }
 });
 
@@ -2312,7 +2312,7 @@ __webpack_require__.r(__webpack_exports__);
     axios.get("http://localhost:8000" + "/api/user/me").then(function (res) {
       _this.infoUser = res.data;
     })["catch"](function (error) {
-      return window.location.href = '/admin/login';
+      return window.location.href = '/admin-login';
     });
   },
   data: function data() {
@@ -3967,21 +3967,25 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     login: function login(e) {
-      console.log("http://localhost:8000");
       e.preventDefault();
-      axios__WEBPACK_IMPORTED_MODULE_0___default().post("http://localhost:8000" + '/api/user/login', {
-        email: this.email,
-        password: this.password
-      }).then(function (res) {
-        if (!res.data.errors) {
-          localStorage.setItem('authenticate', true);
-          window.location.href = '/admin/product';
-        } else {
-          alert('Please login');
-        }
-      })["catch"](function (error) {
-        return console.log(error);
-      });
+
+      if (!/^[^@]+@\w+(\.\w+)+\w$/.test(this.email)) {
+        toastr.error("Please enter a valid email address");
+      } else {
+        axios__WEBPACK_IMPORTED_MODULE_0___default().post("http://localhost:8000" + '/api/user/login', {
+          email: this.email,
+          password: this.password
+        }).then(function (res) {
+          if (!res.data.errors) {
+            localStorage.setItem('authenticate', true);
+            window.location.href = '/admin/product';
+          } else {
+            alert('Please login');
+          }
+        })["catch"](function (error) {
+          return console.log(error);
+        });
+      }
     }
   }
 });
@@ -5625,6 +5629,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   // computed: {
   //     products() {
@@ -5640,7 +5645,8 @@ __webpack_require__.r(__webpack_exports__);
       products: [],
       idProduct: "",
       pagination: {},
-      AWS_URL: "https://ecommercelaravel8.s3.amazonaws.com/"
+      AWS_URL: "http://localhost:8000/",
+      APP_URL: "http://localhost:8000" + "/"
     };
   },
   methods: {
@@ -5705,18 +5711,9 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _router__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./router */ "./resources/js/router/index.js");
+/* harmony import */ var _router_index__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./router/index */ "./resources/js/router/index.js");
 /* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
 /* harmony import */ var _store_index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./store/index */ "./resources/js/store/index.js");
-/* harmony import */ var _pages_DashBoard__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./pages/DashBoard */ "./resources/js/pages/DashBoard.vue");
-/* harmony import */ var _pages_Producer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./pages/Producer */ "./resources/js/pages/Producer.vue");
-/* harmony import */ var _pages_TypeProduct__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./pages/TypeProduct */ "./resources/js/pages/TypeProduct.vue");
-/* harmony import */ var _pages_User__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./pages/User */ "./resources/js/pages/User.vue");
-/* harmony import */ var _pages_Category__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./pages/Category */ "./resources/js/pages/Category.vue");
-/* harmony import */ var _pages_product_list__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./pages/product/list */ "./resources/js/pages/product/list.vue");
-/* harmony import */ var _pages_product_create__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./pages/product/create */ "./resources/js/pages/product/create.vue");
-/* harmony import */ var _pages_Coupon__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./pages/Coupon */ "./resources/js/pages/Coupon.vue");
-/* harmony import */ var _pages_Customer__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./pages/Customer */ "./resources/js/pages/Customer.vue");
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -5731,74 +5728,10 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js"
 Vue.use(vue_router__WEBPACK_IMPORTED_MODULE_2__.default); // Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
 Vue.component('admin-component', __webpack_require__(/*! ./components/AdminComponent.vue */ "./resources/js/components/AdminComponent.vue").default);
-Vue.component('login', __webpack_require__(/*! ./pages/Login */ "./resources/js/pages/Login.vue").default);
-
-
-
-
-
-
-
-
- // const routes = [
-//     {
-//         path: '/admin',
-//         component: DashBoard
-//     },
-//     {
-//         path: '/admin/producer',
-//         component: Producer,
-//         name: 'producer',
-//     },
-//     {
-//         path: '/admin/type-product',
-//         component: TypeProduct,
-//         name: 'typeProduct',
-//     },
-//     {
-//         path: '/admin/user',
-//         component: User,
-//         name: 'user',
-//     },
-//     {
-//         path: '/admin/category',
-//         component: Category,
-//         name: 'category',
-//     },
-//     {
-//         path: '/admin/product',
-//         component: ListProduct,
-//         name: 'product',
-//     },
-//     {
-//         path: '/admin/product/add',
-//         component: CreateProduct,
-//         name: 'createproduct',
-//     },
-//     {
-//         path: '/admin/product/:idProduct',
-//         component: CreateProduct,
-//         name: 'getproduct',
-//     },
-//     {
-//         path: '/admin/coupon',
-//         component: Coupon,
-//         name: 'coupon',
-//     },
-//     {
-//         path: '/admin/customer',
-//         component: Customer,
-//         name: 'customer',
-//     }
-// ];
-// const router = new VueRouter({
-//     mode: 'history',
-//     routes
-// })
-
+Vue.component('login-component', __webpack_require__(/*! ./pages/Login */ "./resources/js/pages/Login.vue").default);
 var app = new Vue({
   el: '#app',
-  router: _router__WEBPACK_IMPORTED_MODULE_0__.default,
+  router: _router_index__WEBPACK_IMPORTED_MODULE_0__.default,
   store: _store_index__WEBPACK_IMPORTED_MODULE_1__.default
 });
 
@@ -45682,7 +45615,7 @@ var render = function() {
                   }
                 ],
                 staticClass: "form-control",
-                attrs: { type: "email", placeholder: "Email", required: "" },
+                attrs: { type: "text", placeholder: "Email", required: "" },
                 domProps: { value: _vm.email },
                 on: {
                   input: function($event) {
@@ -47732,31 +47665,30 @@ var render = function() {
                       _vm._l(_vm.products, function(product, index) {
                         return _c("tr", [
                           _c("td", [
+                            _vm._v(
+                              "\n                      " +
+                                _vm._s(product.id) +
+                                "\n                      "
+                            ),
                             product.images.includes(",")
                               ? _c("img", {
                                   attrs: {
                                     width: "70",
                                     height: "70",
-                                    src:
-                                      "/images/" + product.images.split(",")[1]
+                                    src: product.images.split(",")[1]
                                   }
                                 })
                               : _vm._e(),
-                            _vm._v(
-                              _vm._s(product.id) + "\n                      "
-                            ),
+                            _vm._v(" "),
                             product.images.includes(",") == false
                               ? _c("img", {
                                   attrs: {
                                     width: "70",
                                     height: "70",
-                                    src: _vm.AWS_URL + product.images
+                                    src: _vm.APP_URL + product.images
                                   }
                                 })
-                              : _vm._e(),
-                            _vm._v(
-                              _vm._s(product.id) + "\n                    "
-                            )
+                              : _vm._e()
                           ]),
                           _vm._v(" "),
                           _c("td", [_vm._v(_vm._s(product.title))]),

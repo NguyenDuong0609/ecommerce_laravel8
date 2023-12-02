@@ -35,13 +35,13 @@
                         <img
                           width="70"
                           height="70"
-                          v-bind:src="'/images/' + product.images.split(',')[1]"
+                          v-bind:src="product.images.split(',')[1]"
                           v-if="product.images.includes(',')"
                         />
                         <img
                           width="70"
                           height="70"
-                          v-bind:src="AWS_URL + product.images"
+                          v-bind:src="APP_URL + product.images"
                           v-if="product.images.includes(',') == false"
                         />
                       </td>
@@ -185,7 +185,8 @@ export default {
       products: [],
       idProduct: "",
       pagination: {},
-      AWS_URL: process.env.MIX_SENTRY_DSN_PUBLIC_AWS_URL
+      AWS_URL: process.env.MIX_SENTRY_DSN_PUBLIC_AWS_URL,
+      APP_URL: process.env.MIX_SENTRY_DSN_PUBLIC + "/"
     };
   },
   methods: {

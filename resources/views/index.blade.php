@@ -64,7 +64,7 @@
                                     <div class="product-img-3">
                                         <a href="{{ env('DOMAIN') }}/product/{{ $product->id }}">
                                             {{--  <img src="images/<?php echo explode(",", $product->images)[1] ?>" alt="">  --}}
-                                            <img src="<?php echo env('AWS_URL').$product->images ?>" alt="">
+                                            <img src="{{ env('DOMAIN') }}/{{ $product->images }}" alt="">
                                         </a>
                                         <div class="product-action-right">
                                             {{--  <a class="animate-right" href="#" data-target="#exampleModal" data-toggle="modal" title="Quick View">
@@ -84,7 +84,7 @@
                                             <i class="icofont icofont-star yellow"></i>
                                             <i class="icofont icofont-star"></i>
                                         </div>
-                                        <h4><a href="#">{{ $product->title }}</a></h4>
+                                        <h4><a href="{{ env('DOMAIN') }}/product/{{ $product->id }}">{{ $product->title }}</a></h4>
                                         <span>{{ $product->category->name }}</span>
                                         <h5>${{ $product->price }}</h5>
                                     </div>
@@ -642,7 +642,7 @@
                         <div class="product-img-4">
                             <a href="{{ env('DOMAIN') }}/product/{{ $sellerProducts[0]->id }}">
                                 {{--  <img src="images/<?php echo explode(",", $sellerProducts[0]->images)[1] ?>" alt="">  --}}
-                                <img src="<?php echo env('AWS_URL').$sellerProducts[0]->images ?>" alt="" style="width: 80%; height: 20%">
+                                <img src="{{ env('DOMAIN') }}/{{ $sellerProducts[0]->images }}" alt="" style="width: 80%; height: 20%">
                             </a>
                             <div class="product-action-right">
                                 <a href="javascript:void(0)" class="animate-top" title="Add To Cart" data-quantity="1" data-product-id="{{ $product->id }}" data-price="{{ $product->price }}" data-name="{{ $product->title }}"><i class="pe-7s-cart"></i></a>
@@ -677,7 +677,7 @@
                                         <div class="product-img-4">
                                             <a href="{{ env('DOMAIN') }}/product/{{ $product->id }}">
                                                 {{--  <img src="images/<?php echo explode(",", $product->images)[1] ?>" alt="">  --}}
-                                                <img src="<?php echo env('AWS_URL').$product->images ?>" alt="">
+                                                <img src="{{ env('DOMAIN') }}/{{ $product->images }}" alt="">
                                             </a>
                                             <div class="product-action-right">
                                                 <a href="javascript:void(0)" class="animate-top" title="Add To Cart" data-quantity="1" data-product-id="{{ $product->id }}" data-price="{{ $product->price }}" data-name="{{ $product->title }}"><i class="pe-7s-cart"></i></a>
@@ -694,7 +694,7 @@
                                                 <i class="icofont icofont-star yellow"></i>
                                                 <i class="icofont icofont-star yellow"></i>
                                             </div>
-                                            <h4><a href="#" style="color: white;">{{ $product->title }}</a></h4>
+                                            <h4><a href="{{ env('DOMAIN') }}/product/{{ $product->id }}" style="color: white;">{{ $product->title }}</a></h4>
                                             <h5 style="color: white;">${{ $product->price }}</h5>
                                         </div>
                                     </div>
@@ -737,11 +737,11 @@
                         <div class="product-img-5">
                             <a href="{{ env('DOMAIN') }}/product/{{ $product->id }}">
                                 {{--  <img src="images/<?php echo explode(",", $product->images)[1] ?>" alt="" width="189px" height="190px">  --}}
-                                <img src="<?php echo env('AWS_URL').$product->images ?>" alt="" width="189px" height="190px">
+                                <img src="{{ env('DOMAIN') }}/{{ $product->images }}" alt="" width="189px" height="190px">
                             </a>
                         </div>
                         <div class="product-content-7">
-                            <h4><a href="#">{{ $product->title }}</a></h4>
+                            <h4><a href="{{ env('DOMAIN') }}/product/{{ $product->id }}">{{ $product->title }}</a></h4>
                             <div class="product-rating-4">
                                 <i class="icofont icofont-star yellow"></i>
                                 <i class="icofont icofont-star yellow"></i>

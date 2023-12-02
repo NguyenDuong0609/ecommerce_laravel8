@@ -25,16 +25,16 @@
                                         @if($i == 1)
                                         <div class="tab-pane active show fade" id="pro-details{{ $i }}" role="tabpanel">
                                             <div class="easyzoom easyzoom--overlay">
-                                                <a href="../images/{{ $images[$i] }}">
-                                                    <img src="../images/{{ $images[$i] }}" alt="">
+                                                <a href="../{{ $images[$i] }}">
+                                                    <img src="../{{ $images[$i] }}" alt="">
                                                 </a>
                                             </div>
                                         </div>
                                         @else
                                         <div class="tab-pane fade" id="pro-details{{ $i }}" role="tabpanel">
                                             <div class="easyzoom easyzoom--overlay">
-                                                <a href=".../images/{{ $images[$i] }}">
-                                                    <img src="../images/{{ $images[$i] }}" alt="">
+                                                <a href=".../{{ $images[$i] }}">
+                                                    <img src="../{{ $images[$i] }}" alt="">
                                                 </a>
                                             </div>
                                         </div>
@@ -43,8 +43,8 @@
                                 @else
                                     <div class="tab-pane active show fade" id="pro-details1" role="tabpanel">
                                         <div class="easyzoom easyzoom--overlay">
-                                            <a href="{{ env('AWS_URL').$images[0] }}">
-                                                <img src="{{ env('AWS_URL').$images[0] }}" alt="">
+                                            <a href="../{{ $images[0] }}">
+                                                <img src="../{{ $images[0] }}" alt="">
                                             </a>
                                         </div>
                                     </div>
@@ -55,12 +55,12 @@
                                     @if($i == 1)
                                     <a class="active mr-12" href="#pro-details{{ $i }}" data-toggle="tab" role="tab"
                                         aria-selected="true">
-                                        <img src="{{ env('AWS_URL').$images[$i] }}" alt="" width="141" height="135">
+                                        <img src="../{{ $images[$i] }}" alt="" width="141" height="135">
                                     </a>
                                     @else
                                     <a class="mr-12" href="#pro-details{{ $i }}" data-toggle="tab" role="tab"
                                         aria-selected="true">
-                                        <img src="{{ env('AWS_URL').$images[$i] }}" alt="" width="141" height="135">
+                                        <img src="../{{ $images[$i] }}" alt="" width="141" height="135">
                                     </a>
                                     @endif
                                 @endfor
@@ -150,7 +150,7 @@
                         <div class="product-img">
                             <a href="{{ env('DOMAIN') }}/product/{{ $product->id }}">
                                 {{--  <img src="../images/<?php echo explode(",", $product->images)[1] ?>" alt="">  --}}
-                                <img src="<?php echo env('AWS_URL').$product->images ?>" alt="">
+                                <img src="{{ env('DOMAIN') }}/{{ $product->images }}" alt="">
                             </a>
                             <span>hot</span>
                             <div class="product-action">

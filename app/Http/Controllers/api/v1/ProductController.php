@@ -72,15 +72,15 @@ class ProductController extends Controller
                 $i=1;
 				foreach ($files as $file) {
                     $fileName = $request->slug.$i.".". $file->getClientOriginalExtension();
-                    $images = $this->Upload($file, $fileName);
+                    // $images = $this->Upload($file, $fileName);
 
-                    // $file->move(public_path('images'), $fileName);
-                    // if(count($files) == 1) {
-                    //     $images = $fileName;    
-                    // } else {
-                    //     $images = $images.",".$fileName;
-                    //     $i++;
-                    // }
+                    $file->move(public_path('images'), $fileName);
+                    if(count($files) == 1) {
+                        $images = $fileName;    
+                    } else {
+                        $images = $images.",".$fileName;
+                        $i++;
+                    }
 				}
 
                 $request['images'] = $images;
@@ -90,7 +90,7 @@ class ProductController extends Controller
                     'brand_id' => $request->brand_id,
                     'category_id' => $request->category_id,
                     'product_type_id' => $request->product_type_id,
-                    'images' => $request->images,
+                    'images' => "images/" . $request->images,
                     'price' => $request->price,
                     'status' => $request->status,
                     'short_description' => $request->short_description,
@@ -162,15 +162,15 @@ class ProductController extends Controller
                         $i=1;
                         foreach ($files as $file) {
                             $fileName = $request->slug.$i.".". $file->getClientOriginalExtension();
-                            $images = $this->Upload($file, $fileName);
-                            // $file->move(public_path('images'), $fileName);
+                            // $images = $this->Upload($file, $fileName);
+                            $file->move(public_path('images'), $fileName);
 
-                            // if(count($files) == 1) {
-                            //     $images = $fileName;    
-                            // } else {
-                            //     $images = $images.",".$fileName;
-                            //     $i++;
-                            // }
+                            if(count($files) == 1) {
+                                $images = $fileName;    
+                            } else {
+                                $images = $images.",".$fileName;
+                                $i++;
+                            }
                         }
                         $request['images'] = $images;
                     } else {

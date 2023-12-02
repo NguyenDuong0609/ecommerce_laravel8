@@ -18,7 +18,7 @@ class CustomToken
     {
         $cookie_name = 'token';
 
-        if (!$request->bearerToken()) {
+        if ($request->bearerToken() == null) {
             if ($request->hasCookie($cookie_name)) {
                 $token = $request->cookie($cookie_name);
 

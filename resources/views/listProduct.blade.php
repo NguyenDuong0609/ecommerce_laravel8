@@ -49,7 +49,7 @@
                                     <div class="sidebar-top-rated mb-30">
                                         <div class="single-top-rated">
                                             <div class="top-rated-img">
-                                                <a href="{{ env('DOMAIN') }}/product/{{ $product->id }}"><img src="<?php echo env('AWS_URL').$product->images ?>" alt="" width="91" height="88"></a>
+                                                <a href="{{ env('DOMAIN') }}/product/{{ $product->id }}"><img src="{{ env('DOMAIN') }}/{{ $product->images }}" alt="" width="91" height="88"></a>
                                             </div>
                                             <div class="top-rated-text">
                                                 <h4><a href="{{ env('DOMAIN') }}/product/{{ $product->id }}">{{ $product->title }}</a></h4>
@@ -109,7 +109,7 @@
                                                 <div class="product-img">
                                                     <a href="{{ env('DOMAIN') }}/product/{{ $product->id }}">
                                                         {{--  <img src="../images/<?php echo explode(",", $product->images)[1] ?>"  --}}
-                                                        <img src="<?php echo env('AWS_URL').$product->images ?>"
+                                                        <img src="{{ env('DOMAIN') }}/{{ $product->images }}"
                                                             alt="">
                                                     </a>
                                                     <span>hot</span>
@@ -125,7 +125,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="product-content">
-                                                    <h4><a href="#">{{ $product->title }}</a></h4>
+                                                    <h4><a href="{{ env('DOMAIN') }}/product/{{ $product->id }}">{{ $product->title }}</a></h4>
                                                     <span>${{ $product->price }}</span>
                                                 </div>
                                             </div>
@@ -142,7 +142,7 @@
                                                 <div class="product-img list-img-width">
                                                     <a href="{{ env('DOMAIN') }}/product/{{ $product->id }}">
                                                         {{--  <img src="../images/<?php echo explode(",", $product->images)[1] ?>"  --}}
-                                                        <img src="<?php echo env('AWS_URL').$product->images ?>"
+                                                        <img src="{{ env('DOMAIN') }}/{{ $product->images }}"
                                                             alt="">
                                                     </a>
                                                     <span>hot</span>
@@ -155,7 +155,7 @@
                                                 </div>
                                                 <div class="product-content-list">
                                                     <div class="product-list-info">
-                                                        <h4><a href="#">{{ $product->title }}</a></h4>
+                                                        <h4><a href="{{ env('DOMAIN') }}/product/{{ $product->id }}">{{ $product->title }}</a></h4>
                                                         <span>${{ $product->price }}</span>
                                                         <p>{!! $product->short_description !!}</p>
                                                     </div>
